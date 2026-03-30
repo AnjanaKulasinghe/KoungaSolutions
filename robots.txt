@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow WordPress directories (if any legacy files remain)
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/cache/
+
+# Sitemap location
+Sitemap: https://koungasolutions.co.nz/sitemap.xml
