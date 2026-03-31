@@ -1,10 +1,10 @@
-# ✅ SEO Setup Checklist
+#  SEO Setup Checklist
 
 Quick reference for post-launch SEO tasks.
 
 ---
 
-## 🚀 DO THESE FIRST (This Week)
+##  DO THESE FIRST (This Week)
 
 ### 1. Google Search Console
 - [ ] Create account: https://search.google.com/search-console
@@ -27,7 +27,7 @@ Quick reference for post-launch SEO tasks.
 
 ---
 
-## 📍 DO THESE NEXT (Week 2)
+##  DO THESE NEXT (Week 2)
 
 ### 4. Google Business Profile
 - [ ] Create profile: https://business.google.com
@@ -44,7 +44,7 @@ Quick reference for post-launch SEO tasks.
 
 ---
 
-## 📈 ONGOING TASKS
+##  ONGOING TASKS
 
 ### Analytics & Monitoring
 - [ ] Check Search Console weekly
@@ -66,7 +66,7 @@ Quick reference for post-launch SEO tasks.
 
 ---
 
-## 📁 Files to Add/Edit
+##  Files to Add/Edit
 
 ### Google Search Console Verification
 ```bash
@@ -98,7 +98,7 @@ git push origin main
 
 ---
 
-## 🎯 Success Metrics
+##  Success Metrics
 
 Track these monthly:
 
@@ -112,19 +112,19 @@ Track these monthly:
 
 ---
 
-## 📞 Quick Links
+##  Quick Links
 
 | Tool | URL | Priority |
 |------|-----|----------|
-| Google Search Console | https://search.google.com/search-console | 🔴 HIGH |
-| Google Analytics | https://analytics.google.com | 🔴 HIGH |
-| Google Business | https://business.google.com | 🔴 HIGH |
-| Bing Webmaster | https://www.bing.com/webmasters | 🟡 MEDIUM |
-| PageSpeed Insights | https://pagespeed.web.dev | 🟢 LOW |
-| Microsoft Clarity | https://clarity.microsoft.com | 🟢 LOW |
+| Google Search Console | https://search.google.com/search-console |  HIGH |
+| Google Analytics | https://analytics.google.com |  HIGH |
+| Google Business | https://business.google.com |  HIGH |
+| Bing Webmaster | https://www.bing.com/webmasters |  MEDIUM |
+| PageSpeed Insights | https://pagespeed.web.dev |  LOW |
+| Microsoft Clarity | https://clarity.microsoft.com |  LOW |
 
 ---
 
 **See [POST-LAUNCH-SEO.md](POST-LAUNCH-SEO.md) for detailed step-by-step instructions.**
 
-**Current Status:** Site is live at www.koungasolutions.co.nz ✅
+**Current Status:** Site is live at www.koungasolutions.co.nz 

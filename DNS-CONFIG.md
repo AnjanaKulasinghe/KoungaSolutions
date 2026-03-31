@@ -1,11 +1,11 @@
 # DNS Configuration for koungasolutions.co.nz
 
 **Last Updated:** 31 March 2026  
-**Status:** ✅ Production Ready
+**Status:**  Production Ready
 
 ---
 
-## 🌐 GitHub Pages Hosting (Website)
+##  GitHub Pages Hosting (Website)
 
 ### A Records (IPv4)
 ```
@@ -30,7 +30,7 @@ Type: CNAME    Name: www    Value: anjanakulasinghe.github.io    TTL: 4 Hours
 
 ---
 
-## 📧 Email Configuration (Bluehost)
+##  Email Configuration (Bluehost)
 
 ### MX Records (Email Delivery)
 ```
@@ -54,7 +54,7 @@ Type: A        Name: whm        Value: 50.6.152.208    TTL: 4 Hours
 
 ---
 
-## 🔐 Email Security
+##  Email Security
 
 ### SPF (Sender Policy Framework)
 ```
@@ -103,7 +103,7 @@ TTL: 15 minutes
 
 ---
 
-## 🔧 Service Records
+##  Service Records
 
 ### Email Autodiscovery
 ```
@@ -114,7 +114,7 @@ TTL: 4 Hours
 
 ---
 
-## 🔥 Firebase (Optional)
+##  Firebase (Optional)
 
 ```
 Type: TXT    Name: @
@@ -125,20 +125,20 @@ TTL: 2 Hours
 
 ---
 
-## 📊 Configuration Summary
+##  Configuration Summary
 
 | Service | Records | Status |
 |---------|---------|--------|
-| Website Hosting | 4 A, 4 AAAA, 1 CNAME | ✅ Active |
-| Email Delivery | 4 MX | ✅ Active |
-| Email Access | 4 CNAME, 3 A | ✅ Active |
-| Email Security | 2 DMARC, 1 SPF, 4 DKIM | ✅ Active |
-| Autodiscovery | 1 SRV | ✅ Active |
-| Firebase | 1 TXT | ⚠️ Optional |
+| Website Hosting | 4 A, 4 AAAA, 1 CNAME |  Active |
+| Email Delivery | 4 MX |  Active |
+| Email Access | 4 CNAME, 3 A |  Active |
+| Email Security | 2 DMARC, 1 SPF, 4 DKIM |  Active |
+| Autodiscovery | 1 SRV |  Active |
+| Firebase | 1 TXT |  Optional |
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### Website
 ```bash
@@ -164,7 +164,7 @@ dig TXT _dmarc.koungasolutions.co.nz
 
 ---
 
-## 📞 Email Configuration for Clients
+##  Email Configuration for Clients
 
 **IMAP (Recommended):**
 - Server: `imap.koungasolutions.co.nz` or `imap.bluehost.xion.oxcs.net`
@@ -188,7 +188,7 @@ dig TXT _dmarc.koungasolutions.co.nz
 
 ---
 
-## ⚠️ Important Notes
+##  Important Notes
 
 1. **DNS Propagation**: Changes can take 2-48 hours to propagate globally
 2. **TTL Values**: Lower TTL = faster updates but more DNS queries
@@ -198,7 +198,7 @@ dig TXT _dmarc.koungasolutions.co.nz
 
 ---
 
-## 🔄 Last Changes
+##  Last Changes
 
 - **31 March 2026**: Corrected GitHub Pages A records (removed .154, .155, .156; added correct .109, .110, .111)
 - **31 March 2026**: Verified all email security records (SPF, DKIM, DMARC) are active

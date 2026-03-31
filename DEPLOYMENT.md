@@ -1,6 +1,6 @@
-# 🚀 GitHub Pages Deployment Checklist
+#  GitHub Pages Deployment Checklist
 
-## ✅ Pre-Deployment Checklist
+##  Pre-Deployment Checklist
 
 - [x] CNAME file created with domain: koungasolutions.co.nz
 - [x] .nojekyll file created (prevents Jekyll processing)
@@ -12,7 +12,7 @@
 - [x] All images optimized
 - [x] Links point to correct domain
 
-## 📋 Deployment Steps
+##  Deployment Steps
 
 ### 1. Push to GitHub
 
@@ -70,9 +70,9 @@ Type: CNAME    Name: www    Value: anjanakulasinghe.github.io
 
 1. Wait 5-10 minutes after DNS configuration
 2. In GitHub Pages settings, check **"Enforce HTTPS"**
-3. Done! ✨
+3. Done! 
 
-## 🔍 Verification
+##  Verification
 
 - [ ] Site loads at https://koungasolutions.co.nz
 - [ ] www.koungasolutions.co.nz redirects correctly
@@ -84,7 +84,7 @@ Type: CNAME    Name: www    Value: anjanakulasinghe.github.io
 - [ ] Mobile responsive (test on phone)
 - [ ] Performance good (use PageSpeed Insights)
 
-## 📝 Post-Deployment
+##  Post-Deployment
 
 ### Submit to Search Engines
 
@@ -102,7 +102,7 @@ Type: CNAME    Name: www    Value: anjanakulasinghe.github.io
 - Monitor site health and errors
 - Check Core Web Vitals
 
-## 🆘 Troubleshooting
+##  Troubleshooting
 
 ### Site not loading?
 - Check if GitHub Pages is enabled in repo settings
@@ -124,7 +124,7 @@ Type: CNAME    Name: www    Value: anjanakulasinghe.github.io
 - Try disabling and re-enabling in GitHub settings
 - Ensure DNS records are correct
 
-## 📞 Support
+##  Support
 
 For issues:
 - GitHub Pages Documentation: https://docs.github.com/pages

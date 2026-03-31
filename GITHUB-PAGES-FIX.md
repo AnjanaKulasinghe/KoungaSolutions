@@ -1,12 +1,12 @@
-# 🔧 GitHub Pages Custom Domain Fix
+#  GitHub Pages Custom Domain Fix
 
 ## Current Status
 
-✅ DNS Records: Correct in registrar  
-✅ Google DNS: Propagated  
-✅ Cloudflare DNS: Propagated  
-⏳ OpenDNS: Still propagating (old cache)  
-⏳ GitHub Pages: Waiting for DNS verification  
+ DNS Records: Correct in registrar  
+ Google DNS: Propagated  
+ Cloudflare DNS: Propagated  
+ OpenDNS: Still propagating (old cache)  
+ GitHub Pages: Waiting for DNS verification  
 
 ---
 
@@ -28,8 +28,8 @@
 9. **Wait for DNS check** to complete
 
 You should see one of these:
-- ✅ **"DNS check successful"** → Proceed to Step 3
-- ⚠️ **"Domain does not resolve..."** → Wait 15 minutes and try again
+-  **"DNS check successful"**  Proceed to Step 3
+-  **"Domain does not resolve..."**  Wait 15 minutes and try again
 
 ### Step 3: Enable HTTPS
 
@@ -45,10 +45,10 @@ You should see one of these:
 
 | Time | Action |
 |------|--------|
-| Now | DNS correct in registrar ✅ |
+| Now | DNS correct in registrar  |
 | +15 min | Most DNS servers updated |
 | +30 min | Try remove/re-add domain |
-| +45 min | GitHub should verify ✅ |
+| +45 min | GitHub should verify  |
 | +60 min | Site fully live with HTTPS |
 
 ---
@@ -84,15 +84,15 @@ curl -I http://koungasolutions.co.nz
 
 ---
 
-## What's Already Done ✅
+## What's Already Done 
 
-- ✅ Correct A records in DNS (185.199.108/109/110/111.153)
-- ✅ Correct AAAA records for IPv6
-- ✅ Correct www CNAME (anjanakulasinghe.github.io)
-- ✅ CNAME file in repository root
-- ✅ .nojekyll file present
-- ✅ Code pushed to GitHub
-- ✅ GitHub Pages enabled
+-  Correct A records in DNS (185.199.108/109/110/111.153)
+-  Correct AAAA records for IPv6
+-  Correct www CNAME (anjanakulasinghe.github.io)
+-  CNAME file in repository root
+-  .nojekyll file present
+-  Code pushed to GitHub
+-  GitHub Pages enabled
 
 ---
 
@@ -103,4 +103,4 @@ curl -I http://koungasolutions.co.nz
 - Then try the remove/re-add steps above
 - If still not working, wait until morning - DNS will be fully propagated
 
-**Your site WILL work** - it's just waiting for global DNS propagation! 🚀
+**Your site WILL work** - it's just waiting for global DNS propagation! 
