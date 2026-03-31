@@ -30,7 +30,7 @@ git commit -m "Production ready - Initial deployment"
 git branch -M main
 
 # Add remote origin (replace with your repo URL)
-git remote add origin https://github.com/YOUR-USERNAME/koungasolutions-website.git
+git remote add origin https://github.com/anjanakulasinghe/koungasolutions-website.git
 
 # Push to GitHub
 git push -u origin main
@@ -38,7 +38,7 @@ git push -u origin main
 
 ### 2. Enable GitHub Pages
 
-1. Go to: https://github.com/YOUR-USERNAME/koungasolutions-website/settings/pages
+1. Go to: https://github.com/anjanakulasinghe/koungasolutions-website/settings/pages
 2. Under "Source":
    - Branch: `main`
    - Folder: `/ (root)`
@@ -63,7 +63,7 @@ Type: A    Name: @    Value: 185.199.111.153
 
 **CNAME Record (for www.koungasolutions.co.nz):**
 ```
-Type: CNAME    Name: www    Value: YOUR-USERNAME.github.io
+Type: CNAME    Name: www    Value: anjanakulasinghe.github.io
 ```
 
 ### 4. Enable HTTPS
@@ -134,5 +134,5 @@ For issues:
 ---
 
 **Production URL:** https://koungasolutions.co.nz
-**Repository:** https://github.com/YOUR-USERNAME/koungasolutions-website
-**Deployed:** $(date)
+**Repository:** https://github.com/anjanakulasinghe/koungasolutions-website
+**Deployed:** 31 March 2026
