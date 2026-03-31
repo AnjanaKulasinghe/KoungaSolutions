@@ -2,7 +2,7 @@
 
 A high-performance, modern static website for Kounga Solutions built with HTML5, Tailwind CSS, and vanilla JavaScript.
 
-## 🚀 Features
+##  Features
 
 - **Modern Design**: Clean, professional design with smooth animations
 - **Fully Responsive**: Works perfectly on all devices (mobile, tablet, desktop)
@@ -11,25 +11,25 @@ A high-performance, modern static website for Kounga Solutions built with HTML5,
 - **Accessibility**: WCAG 2.1 compliant with proper ARIA labels
 - **GitHub Pages Ready**: Can be deployed to GitHub Pages with zero configuration
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 KoungaSolutions/
-├── index.html          # Main HTML file
-├── sitemap.xml         # SEO sitemap
-├── robots.txt          # Search engine directives
-├── CNAME               # Custom domain configuration
-├── .nojekyll           # Bypass Jekyll processing
-├── assets/
-│   ├── css/
-│   │   └── style.css   # Custom styles
-│   ├── js/
-│   │   └── main.js     # JavaScript functionality
-│   └── images/         # Optimized images
-└── README.md           # This file
+ index.html          # Main HTML file
+ sitemap.xml         # SEO sitemap
+ robots.txt          # Search engine directives
+ CNAME               # Custom domain configuration
+ .nojekyll           # Bypass Jekyll processing
+ assets/
+    css/
+       style.css   # Custom styles
+    js/
+       main.js     # JavaScript functionality
+    images/         # Optimized images
+ README.md           # This file
 ```
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - **HTML5**: Semantic markup
 - **Tailwind CSS**: Utility-first CSS framework (via CDN)
@@ -37,7 +37,7 @@ KoungaSolutions/
 - **Font Awesome**: Icon library
 - **Google Fonts**: Inter & Poppins fonts
 
-## 📦 Setup Instructions
+##  Setup Instructions
 
 ### Local Development
 
@@ -94,7 +94,7 @@ git push -u origin main
 #### Step 3: Enable GitHub Pages
 
 1. Go to your repository on GitHub
-2. Click **Settings** → **Pages**
+2. Click **Settings**  **Pages**
 3. Under "Source", select:
    - Branch: `main`
    - Folder: `/` (root)
@@ -149,7 +149,7 @@ git push -u origin main
    - Click "Save"
    - Your site will be live at: `https://your-username.github.io/your-repo/`
 
-## 🎨 Customization Guide
+##  Customization Guide
 
 ### Colors
 
@@ -182,7 +182,7 @@ tailwind.config = {
 - Update image paths in `index.html`
 - Optimize images before uploading (see Performance Optimization below)
 
-## ⚡ Performance Optimization
+##  Performance Optimization
 
 ### Image Optimization
 
@@ -223,7 +223,7 @@ For production deployment:
 
 2. **Update references** in `index.html` to use minified versions
 
-## 🔍 SEO Optimization
+##  SEO Optimization
 
 - [x] Semantic HTML5 tags
 - [x] Meta descriptions
@@ -248,7 +248,7 @@ For production deployment:
    </script>
    ```
 
-## 🌐 Browser Support
+##  Browser Support
 
 - Chrome (last 2 versions)
 - Firefox (last 2 versions)
@@ -257,7 +257,7 @@ For production deployment:
 - iOS Safari (last 2 versions)
 - Chrome for Android (last 2 versions)
 
-## ♿ Accessibility
+##  Accessibility
 
 - WCAG 2.1 Level AA compliant
 - Keyboard navigation supported
@@ -265,14 +265,14 @@ For production deployment:
 - Focus indicators on interactive elements
 - Reduced motion support
 
-## 📱 Mobile Optimization
+##  Mobile Optimization
 
 - Touch-friendly interface (minimum 44x44px touch targets)
 - Mobile-first responsive design
 - Optimized images for mobile devices
 - Fast loading on 3G/4G networks
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Video not playing
 - Ensure video files are in the correct path
@@ -290,7 +290,7 @@ For production deployment:
 - Check file names (case-sensitive on Linux/GitHub Pages)
 - Ensure images are in the correct directory
 
-## 📈 Future Enhancements
+##  Future Enhancements
 
 - [ ] Add contact form with backend integration
 - [ ] Implement blog section
@@ -301,11 +301,11 @@ For production deployment:
 - [ ] Add loading animations
 - [ ] Create interactive demos
 
-## 📝 License
+##  License
 
-© 2024 Kounga Solutions. All rights reserved.
+ 2024 Kounga Solutions. All rights reserved.
 
-## 🤝 Support
+##  Support
 
 For questions or support:
 - Email: info@koungasolutions.co.nz
@@ -314,4 +314,4 @@ For questions or support:
 
 ---
 
-**Built with ❤️ by Kounga Solutions**
+**Built by Kounga Solutions**
