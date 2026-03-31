@@ -1,11 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /.git/
+Disallow: /.idea/
 
-# Disallow WordPress directories (if any legacy files remain)
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /wp-content/plugins/
-Disallow: /wp-content/cache/
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
 
 # Sitemap location
-Sitemap: https://koungasolutions.co.nz/sitemap.xml
+Sitemap: https://www.koungasolutions.co.nz/sitemap.xml

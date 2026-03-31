@@ -14,15 +14,18 @@ A high-performance, modern static website for Kounga Solutions built with HTML5,
 ## 📁 Project Structure
 
 ```
-new-site/
+KoungaSolutions/
 ├── index.html          # Main HTML file
-├── css/
-│   └── style.css       # Custom styles
-├── js/
-│   └── main.js         # JavaScript functionality
+├── sitemap.xml         # SEO sitemap
+├── robots.txt          # Search engine directives
+├── CNAME               # Custom domain configuration
+├── .nojekyll           # Bypass Jekyll processing
 ├── assets/
-│   ├── images/         # Optimized images
-│   └── videos/         # Video files
+│   ├── css/
+│   │   └── style.css   # Custom styles
+│   ├── js/
+│   │   └── main.js     # JavaScript functionality
+│   └── images/         # Optimized images
 └── README.md           # This file
 ```
 
@@ -61,22 +64,87 @@ new-site/
      - Right-click on `index.html` and select "Open with Live Server"
 
 3. **Visit** `http://localhost:8000` in your browser
+#### Step 1: Create GitHub Repository
 
-### GitHub Pages Deployment
+1. Create a new repository on GitHub (e.g., `koungasolutions-website`)
+2. Don't initialize with README (we already have one)
 
-1. **Push to GitHub**:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/your-username/your-repo.git
-   git push -u origin main
+#### Step 2: Push to GitHub
+
+```bash
+# Initialize git if not already done
+git init
+
+# Add all files
+git add .
+
+# Commit
+git commit -m "Initial commit - Production ready"
+
+# Set main branch
+git branch -M main
+
+# Add remote (replace with your repository URL)
+git remote add origin https://github.com/your-username/koungasolutions-website.git
+
+# Push to GitHub
+git push -u origin main
+```
+
+#### Step 3: Enable GitHub Pages
+
+1. Go to your repository on GitHub
+2. Click **Settings** → **Pages**
+3. Under "Source", select:
+   - Branch: `main`
+   - Folder: `/` (root)
+4. Click **Save**
+
+#### Step 4: Configure Custom Domain
+
+1. In the same GitHub Pages settings:
+   - Under "Custom domain", enter: `koungasolutions.co.nz`
+   - Click **Save**
+   - The CNAME file in your repository will ensure this persists
+
+2. **Important**: In your domain registrar (where you bought koungasolutions.co.nz):
+   - Add the following DNS records:
+
+   **For apex domain (koungasolutions.co.nz):**
+   ```
+   Type: A
+   Name: @
+   Value: 185.199.108.153
+   
+   Type: A
+   Name: @
+   Value: 185.199.109.153
+   
+   Type: A
+   Name: @
+   Value: 185.199.110.153
+   
+   Type: A
+   Name: @
+   Value: 185.199.111.153
    ```
 
-2. **Enable GitHub Pages**:
-   - Go to your repository settings
-   - Navigate to "Pages" section
+   **For www subdomain (www.koungasolutions.co.nz):**
+   ```
+   Type: CNAME
+   Name: www
+   Value: your-username.github.io
+   ```
+
+3. **Enable HTTPS** (in GitHub Pages settings):
+   - Wait 5-10 minutes for DNS to propagate
+   - Check "Enforce HTTPS" option
+
+#### Step 5: Verify Deployment
+
+- Your site will be live at: `https://koungasolutions.co.nz`
+- DNS changes can take 24-48 hours to fully propagate
+- Check status at: `https://www.whatsmydns.net
    - Select "main" branch and "/new-site" folder (or root if you moved files)
    - Click "Save"
    - Your site will be live at: `https://your-username.github.io/your-repo/`
