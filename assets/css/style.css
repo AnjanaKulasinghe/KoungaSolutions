@@ -379,16 +379,13 @@ nav.scrolled::before {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
-    align-items: flex-start;
-    /* Alignment to start to control padding */
+    align-items: center;
     justify-content: center;
-    padding: 120px 60px 0 60px;
-    /* consistent padding after nav */
+    padding: 80px 60px 40px 60px;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
     z-index: 1;
-    /* Ensure hero is below nav but above some backgrounds */
 }
 
 .hero-content {
@@ -413,18 +410,18 @@ nav.scrolled::before {
 .hero-badge {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 24px;
+    gap: 8px;
+    padding: 8px 20px;
     background: rgba(239, 127, 26, 0.08);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(239, 127, 26, 0.3);
     border-radius: 50px;
     color: var(--accent-orange);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     animation: slideDown 0.8s ease-out;
     max-width: 100%;
     box-sizing: border-box;
@@ -466,11 +463,11 @@ nav.scrolled::before {
 }
 
 .hero-text h1 {
-    font-size: clamp(56px, 9vw, 96px);
-    margin-bottom: 30px;
+    font-size: clamp(38px, 7vw, 86px);
+    margin-bottom: 20px;
     line-height: 1.05;
     font-weight: 800;
-    letter-spacing: -3px;
+    letter-spacing: -2px;
 }
 
 .hero-text h1 .word {
@@ -541,10 +538,10 @@ nav.scrolled::before {
 }
 
 .hero-text p {
-    font-size: 20px;
+    font-size: 17px;
     color: var(--text-secondary);
-    margin-bottom: 40px;
-    line-height: 1.8;
+    margin-bottom: 24px;
+    line-height: 1.6;
     max-width: 600px;
     animation: fadeIn 0.8s ease-out 0.7s backwards;
 }
@@ -561,22 +558,22 @@ nav.scrolled::before {
 
 .hero-buttons {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
     animation: fadeIn 0.8s ease-out 0.9s backwards;
 }
 
 .btn-primary,
 .btn-secondary {
-    padding: 18px 40px;
-    font-size: 15px;
+    padding: 14px 32px;
+    font-size: 14px;
     font-weight: 700;
     text-decoration: none;
     border-radius: 12px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     position: relative;
@@ -1567,9 +1564,169 @@ footer {
 }
 
 /* Responsive */
+/* Medium Desktops and Small Laptops */
+@media (max-width: 1200px) {
+    .hero {
+        padding: 75px 40px 30px 40px;
+    }
+
+    .hero-content {
+        gap: 35px;
+        align-items: center;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(32px, 5.5vw, 50px);
+        letter-spacing: -1.2px;
+        margin-bottom: 16px;
+        line-height: 1.1;
+    }
+
+    .hero-text p {
+        font-size: 15px;
+        line-height: 1.55;
+        margin-bottom: 20px;
+    }
+
+    .hero-badge {
+        font-size: 10px;
+        padding: 7px 16px;
+        margin-bottom: 16px;
+    }
+
+    .hero-buttons {
+        gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 28px;
+        font-size: 12px;
+    }
+
+    .hero-showcase {
+        height: 400px;
+    }
+
+    .tech-stack {
+        gap: 10px;
+        width: 320px;
+    }
+
+    .tech-card {
+        padding: 14px 10px;
+    }
+
+    .tech-icon {
+        font-size: 28px;
+    }
+
+    .tech-name {
+        font-size: 12px;
+    }
+
+    .tech-desc {
+        font-size: 9px;
+    }
+}
+
+/* Small Desktop Screens - Critical Fix */
+@media (max-width: 1100px) {
+    .hero {
+        padding: 70px 30px 30px 30px;
+    }
+
+    .hero-content {
+        gap: 25px;
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(26px, 4.5vw, 38px);
+        letter-spacing: -0.8px;
+        margin-bottom: 12px;
+        line-height: 1.15;
+    }
+
+    .hero-text p {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 16px;
+        max-width: 100%;
+    }
+
+    .hero-badge {
+        font-size: 9px;
+        padding: 5px 12px;
+        margin-bottom: 12px;
+        gap: 6px;
+    }
+
+    .hero-badge::before {
+        width: 6px;
+        height: 6px;
+    }
+
+    .hero-buttons {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 20px;
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .hero-visual {
+        order: 1;
+    }
+
+    .hero-showcase {
+        height: 280px;
+    }
+
+    .tech-stack {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        gap: 8px;
+    }
+
+    .tech-card {
+        padding: 12px 8px;
+    }
+
+    .tech-icon {
+        font-size: 24px;
+    }
+
+    .tech-name {
+        font-size: 11px;
+    }
+
+    .tech-desc {
+        font-size: 8px;
+    }
+
+    .geometric-shape {
+        display: none;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+}
+
+/* Tablets and Small Desktops */
 @media (max-width: 1024px) {
     nav {
-        padding: 20px 40px;
+        padding: 16px 30px;
         max-width: 100%;
         left: 0;
         transform: none;
@@ -1577,12 +1734,12 @@ footer {
 
     .hero {
         max-width: 100%;
-        padding: 120px 40px 0 40px;
+        padding: 70px 30px 30px 30px;
     }
 
     .hero-content {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 30px;
         padding: 0;
     }
 
@@ -1591,13 +1748,18 @@ footer {
     }
 
     .hero-showcase {
-        height: 400px;
+        height: 320px;
     }
 
     .tech-stack {
         width: 100%;
-        max-width: 100%;
+        max-width: 420px;
         margin: 0 auto;
+        gap: 10px;
+    }
+
+    .tech-card {
+        padding: 14px 10px;
     }
 
     .geometric-shape {
@@ -1605,7 +1767,29 @@ footer {
     }
 
     .hero-text h1 {
-        font-size: 56px;
+        font-size: clamp(28px, 5vw, 42px);
+        letter-spacing: -1px;
+        line-height: 1.15;
+        margin-bottom: 14px;
+    }
+
+    .hero-text p {
+        font-size: 14px;
+        line-height: 1.55;
+        max-width: 100%;
+        margin-bottom: 18px;
+    }
+
+    .hero-badge {
+        font-size: 9px;
+        padding: 6px 14px;
+        margin-bottom: 14px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 11px 24px;
+        font-size: 11px;
     }
 
     .stats-bar {
@@ -1649,6 +1833,7 @@ footer {
     }
 }
 
+/* Mobile Devices and Tablets Portrait */
 @media (max-width: 768px) {
     * {
         max-width: 100%;
@@ -1689,20 +1874,18 @@ footer {
         height: 100dvh;
         width: 100%;
         max-width: 100%;
-        padding-top: 80px;
-        /* Reduced top padding for mobile */
+        padding: 70px 20px 40px 20px;
         box-sizing: border-box;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .hero-content {
-        padding: 20px 20px 80px;
+        padding: 0 20px;
         gap: 0;
         grid-template-columns: 1fr;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        min-height: auto;
+        justify-content: center;
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
@@ -1787,6 +1970,7 @@ footer {
     }
 
     .hero-scroll {
+        display: flex;
         bottom: 20px;
         position: absolute;
     }
@@ -1798,6 +1982,7 @@ footer {
 
     .hero-scroll-icon {
         width: 20px;
+        height: 30px;
     }
 
     .stats-bar {
@@ -1973,7 +2158,7 @@ footer {
     }
 }
 
-/* Extra small phones */
+/* Extra Small Mobile Devices */
 @media (max-width: 480px) {
     * {
         max-width: 100%;
@@ -1996,20 +2181,18 @@ footer {
         height: 100dvh;
         width: 100%;
         max-width: 100%;
-        padding: 70px 15px 70px 15px;
-        /* Adjusted for extra small mobile */
+        padding: 60px 15px 40px 15px;
         box-sizing: border-box;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .hero-content {
-        padding: 10px 15px 70px;
-        min-height: auto;
+        padding: 0 15px;
         width: 100%;
         max-width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         box-sizing: border-box;
     }
 
