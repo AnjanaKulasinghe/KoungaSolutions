@@ -279,8 +279,8 @@ const prevBtn = document.getElementById('testimonial-prev');
 const nextBtn = document.getElementById('testimonial-next');
 const dotsContainer = document.getElementById('testimonial-dots');
 
-const isMobile = window.innerWidth < 768;
-const slidesToShow = isMobile ? 1 : 2;
+let isMobile = window.innerWidth < 768;
+let slidesToShow = isMobile ? 1 : 2;
 const totalSlides = testimonialCards.length;
 
 // Clone cards for infinite loop effect
@@ -307,15 +307,32 @@ for (let i = 0; i < numDots; i++) {
 
 const dots = document.querySelectorAll('.carousel-dot');
 
+// Initialize slider position
+setTimeout(() => updateSlider(false), 100);
+
 function updateSlider(smooth = true) {
     if (!smooth) {
         testimonialsSlider.style.transition = 'none';
     }
 
-    const slideWidth = isMobile ? 100 : 50;
-    const gap = isMobile ? 0 : 2.5;
-    const offset = currentSlide * (slideWidth + gap);
-    testimonialsSlider.style.transform = `translateX(-${offset}%)`;
+    // Recalculate on every update for responsive behavior
+    isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+        // Get the actual rendered width of the first card in pixels
+        const firstCard = testimonialsSlider.querySelector('.testimonial-card');
+        const cardWidth = firstCard.getBoundingClientRect().width;
+
+        // Move exactly this many pixels
+        const offsetPx = currentSlide * cardWidth;
+        testimonialsSlider.style.transform = `translateX(-${offsetPx}px)`;
+    } else {
+        // Use percentages for desktop
+        const slideWidth = 50;
+        const gap = 2.5;
+        const offset = currentSlide * (slideWidth + gap);
+        testimonialsSlider.style.transform = `translateX(-${offset}%)`;
+    }
 
     if (!smooth) {
         setTimeout(() => {
@@ -372,19 +389,54 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') nextSlide();
 });
 
+// Handle window resize with debounce
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        updateSlider(false);
+    }, 100);
+});
+
 // Touch swipe support
 let touchStartX = 0;
 let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
 
 testimonialsSlider.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
-});
+    touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+testimonialsSlider.addEventListener('touchmove', (e) => {
+    const touchMoveX = e.changedTouches[0].screenX;
+    const touchMoveY = e.changedTouches[0].screenY;
+    const deltaX = Math.abs(touchMoveX - touchStartX);
+    const deltaY = Math.abs(touchMoveY - touchStartY);
+
+    // If horizontal swipe is dominant, prevent vertical scroll
+    if (deltaX > deltaY && deltaX > 10) {
+        e.preventDefault();
+    }
+}, { passive: false });
 
 testimonialsSlider.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 50) nextSlide();
-    if (touchEndX - touchStartX > 50) prevSlide();
-});
+    touchEndY = e.changedTouches[0].screenY;
+
+    const deltaX = touchStartX - touchEndX;
+    const deltaY = Math.abs(touchStartY - touchEndY);
+
+    // Only trigger swipe if horizontal movement is dominant and significant
+    if (Math.abs(deltaX) > deltaY && Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+            nextSlide(); // Swipe left - next slide
+        } else {
+            prevSlide(); // Swipe right - previous slide
+        }
+    }
+}, { passive: true });
 
 // Contact Form Handler
 const contactForm = document.getElementById('contactForm');

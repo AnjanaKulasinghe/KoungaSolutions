@@ -1117,9 +1117,10 @@ section {
 
 .testimonials-slider {
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     border-radius: 20px;
     width: 100%;
+    touch-action: pan-y pinch-zoom;
 }
 
 .testimonials-grid {
@@ -1127,6 +1128,7 @@ section {
     gap: 30px;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     width: 100%;
+    will-change: transform;
 }
 
 .testimonial-card {
@@ -2070,14 +2072,29 @@ footer {
     .testimonials-container {
         max-width: 100%;
         width: 100%;
-        padding: 0 20px;
+        padding: 0;
+        margin: 0;
         box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .testimonials-slider {
+        padding: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .testimonials-grid {
+        gap: 0;
     }
 
     .testimonial-card {
         min-width: 100%;
+        width: 100%;
         flex: 0 0 100%;
         padding: 25px 20px;
+        margin: 0;
+        box-sizing: border-box;
     }
 
     .testimonial-text {
@@ -2274,14 +2291,36 @@ footer {
     }
 
     .testimonials-container {
-        padding: 0 15px;
+        padding: 0;
         max-width: 100%;
         width: 100%;
+        margin: 0;
         box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .testimonials-slider {
+        padding: 0;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .testimonials-grid {
+        gap: 0;
     }
 
     .testimonial-card {
+        min-width: 100%;
+        width: 100%;
+        flex: 0 0 100%;
         padding: 20px 15px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .testimonial-text {
+        font-size: 13px;
+        max-height: 160px;
     }
 
     .contact-section {
