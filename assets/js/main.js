@@ -444,22 +444,54 @@ const formStatus = document.getElementById('formStatus');
 let formLoadTime = Date.now();
 
 if (contactForm) {
+    // Dynamic token generation on first interaction
+    const setHumanToken = () => {
+        const token = btoa('human_' + Date.now());
+        document.getElementById('humanToken').value = token;
+        contactForm.removeEventListener('mousemove', setHumanToken);
+        contactForm.removeEventListener('focusin', setHumanToken);
+        contactForm.removeEventListener('touchstart', setHumanToken);
+    };
+
+    contactForm.addEventListener('mousemove', setHumanToken);
+    contactForm.addEventListener('focusin', setHumanToken);
+    contactForm.addEventListener('touchstart', setHumanToken);
+
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Time-based spam protection (minimum 3 seconds)
+        // 1. Time-based spam protection (minimum 4 seconds for a realistic human fill)
         const timeSinceLoad = (Date.now() - formLoadTime) / 1000;
-        if (timeSinceLoad < 3) {
+        if (timeSinceLoad < 4) {
             showFormStatus('Please take your time filling out the form.', 'error');
             return;
         }
 
-        // Honeypot check
-        const honeypot = contactForm.querySelector('input[name="_honey"]');
-        if (honeypot && honeypot.value !== '') {
-            // Bot detected - silently fail
-            showFormStatus('Thank you for your message!', 'success');
+        // 2. Honeypot checks (Multiple hidden fields)
+        const honey1 = contactForm.querySelector('input[name="_honey"]');
+        const honey2 = contactForm.querySelector('input[name="email_confirm"]');
+        if ((honey1 && honey1.value !== '') || (honey2 && honey2.value !== '')) {
+            // Bot detected - silently fail with a success message to mislead the bot
+            showFormStatus('Thank you! Your message has been sent successfully.', 'success');
             contactForm.reset();
+            return;
+        }
+
+        // 3. Verification Checkbox
+        const humanCheck = document.getElementById('humanCheck');
+        if (!humanCheck || !humanCheck.checked) {
+            showFormStatus('Please confirm you are not a bot by checking the box.', 'error');
+            // Shake the checkbox area to draw attention
+            const verGroup = document.querySelector('.verification-group');
+            verGroup.style.animation = 'none';
+            setTimeout(() => verGroup.style.animation = 'shake 0.5s ease-in-out', 10);
+            return;
+        }
+
+        // 4. Dynamic Token Check
+        const humanToken = document.getElementById('humanToken');
+        if (!humanToken || !humanToken.value) {
+            showFormStatus('Verification failed. Please refresh and try again.', 'error');
             return;
         }
 
@@ -488,6 +520,13 @@ if (contactForm) {
                 showFormStatus('Thank you! Your message has been sent successfully. We\'ll get back to you soon.', 'success');
                 contactForm.reset();
                 formLoadTime = Date.now();
+                // Reset human check and token
+                if (humanCheck) humanCheck.checked = false;
+                if (humanToken) humanToken.value = '';
+                // Re-add interaction listeners
+                contactForm.addEventListener('mousemove', setHumanToken);
+                contactForm.addEventListener('focusin', setHumanToken);
+                contactForm.addEventListener('touchstart', setHumanToken);
             } else if (data.message && data.message.includes('confirm')) {
                 showFormStatus('Please check your email to confirm form activation. Then resubmit your message.', 'error');
             } else {
