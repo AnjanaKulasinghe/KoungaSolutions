@@ -79,6 +79,10 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfVSrYsAAAAAKk9GUr4qEE9bMy_szHowSNaqxgu" async
+        defer></script>
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
@@ -563,13 +567,17 @@
                     <input type="hidden" name="_subject" value="New Contact Form Submission - Kounga Solutions">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
-                    
-                    <!-- Advanced Anti-Spam -->
-                    <div class="hp-field">
-                        <input type="text" name="_honey" tabindex="-1" autocomplete="off">
-                        <input type="email" name="email_confirm" tabindex="-1" autocomplete="off">
-                    </div>
-                    <input type="hidden" name="human_token" id="humanToken" value="">
+
+                    <!-- Anti-spam honeypot fields (hidden from users, visible to bots) -->
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                    <input type="email" name="email_confirm" style="display:none" tabindex="-1" autocomplete="off">
+                    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+
+                    <!-- Dynamic human interaction token -->
+                    <input type="hidden" id="humanToken" name="_human_token" value="">
+
+                    <!-- Google reCAPTCHA token -->
+                    <input type="hidden" id="recaptchaToken" name="g-recaptcha-response">
 
                     <div class="form-row">
                         <div class="form-group">
@@ -609,11 +617,12 @@
                         <label for="message">Your Message *</label>
                     </div>
 
-                    <div class="form-group verification-group">
+                    <!-- Human Verification -->
+                    <div class="verification-group">
                         <label class="checkbox-container">
-                            <input type="checkbox" id="humanCheck">
+                            <input type="checkbox" id="humanCheck" name="_human_verify" required>
                             <span class="checkmark"></span>
-                            <span class="checkbox-text">I'm not a bot</span>
+                            <span class="checkbox-label">I'm a human, not a bot *</span>
                         </label>
                     </div>
 
