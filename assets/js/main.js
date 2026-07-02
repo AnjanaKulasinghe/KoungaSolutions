@@ -535,9 +535,24 @@ if (contactForm) {
             return;
         }
 
-        // 7. Content validation - check for spam patterns
-        const message = contactForm.querySelector('#message').value.toLowerCase();
-        const name = contactForm.querySelector('#name').value.toLowerCase();
+        // 7. Content validation - trim and reject empty/whitespace-only messages
+        const messageField = contactForm.querySelector('#message');
+        const nameField = contactForm.querySelector('#name');
+        const trimmedMessage = messageField.value.trim();
+        const trimmedName = nameField.value.trim();
+
+        if (!trimmedMessage) {
+            showFormStatus('📝 Please enter a message before submitting.', 'error');
+            messageField.focus();
+            return;
+        }
+
+        // Persist trimmed values back so the submitted payload has no leading/trailing whitespace
+        messageField.value = trimmedMessage;
+        nameField.value = trimmedName;
+
+        const message = trimmedMessage.toLowerCase();
+        const name = trimmedName.toLowerCase();
 
         const spamKeywords = ['seo', 'ranking', 'crypto', 'bitcoin', 'casino', 'viagra',
             'lottery', 'prize', 'winner', 'congratulations', 'click here',
@@ -559,10 +574,11 @@ if (contactForm) {
         // 8. Check message quality (minimum reasonable length)
         if (message.length < 10) {
             showFormStatus('📝 Please provide more details in your message.', 'error');
+            messageField.focus();
             return;
         }
 
-        // Get form data
+        // Get form data (after trimming has been applied to the fields)
         const formData = new FormData(contactForm);
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalBtnText = submitBtn.querySelector('span').textContent;
