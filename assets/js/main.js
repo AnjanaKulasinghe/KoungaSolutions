@@ -468,12 +468,15 @@ if (contactForm) {
     contactForm.addEventListener('focusin', setHumanToken);
     contactForm.addEventListener('touchstart', setHumanToken);
 
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    contactForm.addEventListener('submit', (e) => {
+        // NOTE: On success we let the form submit NATIVELY (no preventDefault) so that
+        // FormSubmit's server-side captcha + redirect flow runs. Client-side checks below
+        // only stop lazy bots; the real protection is FormSubmit's captcha on the server.
 
         // 1. Time-based spam protection (minimum 5 seconds for a realistic human fill)
         const timeSinceLoad = (Date.now() - formLoadTime) / 1000;
         if (timeSinceLoad < 5) {
+            e.preventDefault();
             showFormStatus('⏱️ Please take your time filling out the form properly.', 'error');
             return;
         }
@@ -486,6 +489,7 @@ if (contactForm) {
 
             // If typing speed is impossibly fast (more than 10 chars per second)
             if (totalChars / timeSinceLoad > 10) {
+                e.preventDefault();
                 showFormStatus('⚠️ Please slow down and fill the form carefully.', 'error');
                 return;
             }
@@ -500,6 +504,7 @@ if (contactForm) {
             (honey2 && honey2.value !== '') ||
             (honey3 && honey3.value !== '')) {
             // Bot detected - silently fail with a success message to mislead the bot
+            e.preventDefault();
             showFormStatus('✅ Thank you! Your message has been sent successfully.', 'success');
             setTimeout(() => {
                 contactForm.reset();
@@ -511,6 +516,7 @@ if (contactForm) {
         // 4. Verification Checkbox (must be checked)
         const humanCheck = document.getElementById('humanCheck');
         if (!humanCheck || !humanCheck.checked) {
+            e.preventDefault();
             showFormStatus('❌ Please confirm you are not a bot by checking the verification box.', 'error');
             // Shake the checkbox area to draw attention
             const verGroup = document.querySelector('.verification-group');
@@ -525,12 +531,14 @@ if (contactForm) {
         // 5. Dynamic Token Check
         const humanToken = document.getElementById('humanToken');
         if (!humanToken || !humanToken.value) {
+            e.preventDefault();
             showFormStatus('⚠️ Verification failed. Please refresh the page and try again.', 'error');
             return;
         }
 
         // 6. Check for human-like behavior
         if (mouseMovements < 5 && typingEvents < 10) {
+            e.preventDefault();
             showFormStatus('⚠️ Please interact with the form naturally.', 'error');
             return;
         }
@@ -542,6 +550,7 @@ if (contactForm) {
         const trimmedName = nameField.value.trim();
 
         if (!trimmedMessage) {
+            e.preventDefault();
             showFormStatus('📝 Please enter a message before submitting.', 'error');
             messageField.focus();
             return;
@@ -563,6 +572,7 @@ if (contactForm) {
         );
 
         if (hasSpamContent) {
+            e.preventDefault();
             showFormStatus('✅ Thank you! Your message has been sent successfully.', 'success');
             setTimeout(() => {
                 contactForm.reset();
@@ -573,73 +583,18 @@ if (contactForm) {
 
         // 8. Check message quality (minimum reasonable length)
         if (message.length < 10) {
+            e.preventDefault();
             showFormStatus('📝 Please provide more details in your message.', 'error');
             messageField.focus();
             return;
         }
 
-        // Get form data (after trimming has been applied to the fields)
-        const formData = new FormData(contactForm);
+        // All client-side checks passed. Show a sending state and let the browser
+        // submit natively to FormSubmit, which will present its captcha and then redirect.
         const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalBtnText = submitBtn.querySelector('span').textContent;
-
-        // Disable button and show loading state
         submitBtn.disabled = true;
         submitBtn.querySelector('span').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-        try {
-            // Optional: Google reCAPTCHA v3 integration
-            if (typeof grecaptcha !== 'undefined') {
-                try {
-                    const recaptchaToken = await grecaptcha.execute('6LfVSrYsAAAAAKk9GUr4qEE9bMy_szHowSNaqxgu', { action: 'submit' });
-                    const recaptchaField = document.getElementById('recaptchaToken');
-                    if (recaptchaField) {
-                        recaptchaField.value = recaptchaToken;
-                    }
-                } catch (err) {
-                    console.warn('reCAPTCHA not configured:', err);
-                }
-            }
-
-            // Submit to Formsubmit AJAX endpoint
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            const data = await response.json();
-
-            if (response.ok && data.success) {
-                showFormStatus('✅ Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
-                contactForm.reset();
-                formLoadTime = Date.now();
-                mouseMovements = 0;
-                typingEvents = 0;
-
-                // Reset human check and token
-                if (humanCheck) humanCheck.checked = false;
-                if (humanToken) humanToken.value = '';
-
-                // Re-add interaction listeners
-                contactForm.addEventListener('mousemove', setHumanToken);
-                contactForm.addEventListener('focusin', setHumanToken);
-                contactForm.addEventListener('touchstart', setHumanToken);
-            } else if (data.message && data.message.includes('confirm')) {
-                showFormStatus('📧 Please check your email to confirm form activation. Then resubmit your message.', 'error');
-            } else {
-                throw new Error(data.message || 'Something went wrong');
-            }
-        } catch (error) {
-            showFormStatus('❌ Oops! There was an error sending your message. Please try again or email us directly at info@koungasolutions.co.nz', 'error');
-            console.error('Form submission error:', error);
-        } finally {
-            // Re-enable button
-            submitBtn.disabled = false;
-            submitBtn.querySelector('span').textContent = originalBtnText;
-        }
+        // (No preventDefault here — native submission proceeds.)
     });
 }
 

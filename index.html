@@ -562,10 +562,11 @@
         <div class="contact-container">
             <div class="contact-form-wrapper" data-aos="fade-up">
                 <h3><span class="gradient-text">Send Us a Message</span></h3>
-                <form id="contactForm" action="https://formsubmit.co/ajax/info@koungasolutions.co.nz" method="POST">
+                <form id="contactForm" action="https://formsubmit.co/info@koungasolutions.co.nz" method="POST">
                     <!-- Formsubmit Configuration -->
                     <input type="hidden" name="_subject" value="New Contact Form Submission - Kounga Solutions">
-                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Server-side captcha (FormSubmit) - the only gate that stops direct-POST bots -->
+                    <input type="hidden" name="_captcha" value="true">
                     <input type="hidden" name="_template" value="table">
 
                     <!-- Anti-spam honeypot fields (hidden from users, visible to bots) -->
