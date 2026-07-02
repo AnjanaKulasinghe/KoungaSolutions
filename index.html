@@ -79,9 +79,8 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Google reCAPTCHA v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfVSrYsAAAAAKk9GUr4qEE9bMy_szHowSNaqxgu" async
-        defer></script>
+    <!-- Cloudflare Turnstile (server-side verified by Web3Forms) -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -562,23 +561,15 @@
         <div class="contact-container">
             <div class="contact-form-wrapper" data-aos="fade-up">
                 <h3><span class="gradient-text">Send Us a Message</span></h3>
-                <form id="contactForm" action="https://formsubmit.co/info@koungasolutions.co.nz" method="POST">
-                    <!-- Formsubmit Configuration -->
-                    <input type="hidden" name="_subject" value="New Contact Form Submission - Kounga Solutions">
-                    <!-- Server-side captcha (FormSubmit) - the only gate that stops direct-POST bots -->
-                    <input type="hidden" name="_captcha" value="true">
-                    <input type="hidden" name="_template" value="table">
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <!-- Web3Forms Configuration -->
+                    <!-- TODO: replace with your real Web3Forms access key from https://web3forms.com -->
+                    <input type="hidden" name="access_key" value="22cadac6-0fa3-4c1f-8d49-bed7c2c4286a">
+                    <input type="hidden" name="subject" value="New Contact Form Submission - Kounga Solutions">
+                    <input type="hidden" name="from_name" value="Kounga Solutions Website">
 
-                    <!-- Anti-spam honeypot fields (hidden from users, visible to bots) -->
-                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-                    <input type="email" name="email_confirm" style="display:none" tabindex="-1" autocomplete="off">
-                    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
-
-                    <!-- Dynamic human interaction token -->
-                    <input type="hidden" id="humanToken" name="_human_token" value="">
-
-                    <!-- Google reCAPTCHA token -->
-                    <input type="hidden" id="recaptchaToken" name="g-recaptcha-response">
+                    <!-- Web3Forms honeypot (checked server-side): bots fill this, humans never see it -->
+                    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
                     <div class="form-row">
                         <div class="form-group">
@@ -618,13 +609,10 @@
                         <label for="message">Your Message *</label>
                     </div>
 
-                    <!-- Human Verification -->
+                    <!-- Human Verification (Cloudflare Turnstile - verified server-side by Web3Forms) -->
+                    <!-- TODO: replace with your real Turnstile site key from the Cloudflare dashboard -->
                     <div class="verification-group">
-                        <label class="checkbox-container">
-                            <input type="checkbox" id="humanCheck" name="_human_verify" required>
-                            <span class="checkmark"></span>
-                            <span class="checkbox-label">I'm a human, not a bot *</span>
-                        </label>
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAADuUYY_WHX6m6UfR" data-theme="auto"></div>
                     </div>
 
                     <button type="submit" class="submit-btn">

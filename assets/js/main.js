@@ -452,31 +452,15 @@ if (contactForm) {
 }
 
 if (contactForm) {
-    // Dynamic token generation on first interaction
-    const setHumanToken = () => {
-        const token = btoa('human_' + Date.now() + '_' + Math.random());
-        const tokenField = document.getElementById('humanToken');
-        if (tokenField) {
-            tokenField.value = token;
-        }
-        contactForm.removeEventListener('mousemove', setHumanToken);
-        contactForm.removeEventListener('focusin', setHumanToken);
-        contactForm.removeEventListener('touchstart', setHumanToken);
-    };
-
-    contactForm.addEventListener('mousemove', setHumanToken);
-    contactForm.addEventListener('focusin', setHumanToken);
-    contactForm.addEventListener('touchstart', setHumanToken);
-
-    contactForm.addEventListener('submit', (e) => {
-        // NOTE: On success we let the form submit NATIVELY (no preventDefault) so that
-        // FormSubmit's server-side captcha + redirect flow runs. Client-side checks below
-        // only stop lazy bots; the real protection is FormSubmit's captcha on the server.
+    contactForm.addEventListener('submit', async (e) => {
+        // Inline AJAX submission to Web3Forms. Web3Forms verifies Cloudflare Turnstile
+        // server-side, so a direct-POST bot without a valid Turnstile token is rejected
+        // on the server. The client-side checks below are just lightweight first-line filters.
+        e.preventDefault();
 
         // 1. Time-based spam protection (minimum 5 seconds for a realistic human fill)
         const timeSinceLoad = (Date.now() - formLoadTime) / 1000;
         if (timeSinceLoad < 5) {
-            e.preventDefault();
             showFormStatus('⏱️ Please take your time filling out the form properly.', 'error');
             return;
         }
@@ -489,22 +473,15 @@ if (contactForm) {
 
             // If typing speed is impossibly fast (more than 10 chars per second)
             if (totalChars / timeSinceLoad > 10) {
-                e.preventDefault();
                 showFormStatus('⚠️ Please slow down and fill the form carefully.', 'error');
                 return;
             }
         }
 
-        // 3. Honeypot checks (Multiple hidden fields)
-        const honey1 = contactForm.querySelector('input[name="_honey"]');
-        const honey2 = contactForm.querySelector('input[name="email_confirm"]');
-        const honey3 = contactForm.querySelector('input[name="website"]');
-
-        if ((honey1 && honey1.value !== '') ||
-            (honey2 && honey2.value !== '') ||
-            (honey3 && honey3.value !== '')) {
+        // 3. Honeypot check (Web3Forms "botcheck" field - hidden from humans)
+        const botcheck = contactForm.querySelector('input[name="botcheck"]');
+        if (botcheck && botcheck.checked) {
             // Bot detected - silently fail with a success message to mislead the bot
-            e.preventDefault();
             showFormStatus('✅ Thank you! Your message has been sent successfully.', 'success');
             setTimeout(() => {
                 contactForm.reset();
@@ -513,44 +490,19 @@ if (contactForm) {
             return;
         }
 
-        // 4. Verification Checkbox (must be checked)
-        const humanCheck = document.getElementById('humanCheck');
-        if (!humanCheck || !humanCheck.checked) {
-            e.preventDefault();
-            showFormStatus('❌ Please confirm you are not a bot by checking the verification box.', 'error');
-            // Shake the checkbox area to draw attention
-            const verGroup = document.querySelector('.verification-group');
-            if (verGroup) {
-                verGroup.classList.remove('shake');
-                setTimeout(() => verGroup.classList.add('shake'), 10);
-                setTimeout(() => verGroup.classList.remove('shake'), 600);
-            }
-            return;
-        }
-
-        // 5. Dynamic Token Check
-        const humanToken = document.getElementById('humanToken');
-        if (!humanToken || !humanToken.value) {
-            e.preventDefault();
-            showFormStatus('⚠️ Verification failed. Please refresh the page and try again.', 'error');
-            return;
-        }
-
-        // 6. Check for human-like behavior
+        // 4. Check for human-like behavior
         if (mouseMovements < 5 && typingEvents < 10) {
-            e.preventDefault();
             showFormStatus('⚠️ Please interact with the form naturally.', 'error');
             return;
         }
 
-        // 7. Content validation - trim and reject empty/whitespace-only messages
+        // 5. Content validation - trim and reject empty/whitespace-only messages
         const messageField = contactForm.querySelector('#message');
         const nameField = contactForm.querySelector('#name');
         const trimmedMessage = messageField.value.trim();
         const trimmedName = nameField.value.trim();
 
         if (!trimmedMessage) {
-            e.preventDefault();
             showFormStatus('📝 Please enter a message before submitting.', 'error');
             messageField.focus();
             return;
@@ -572,7 +524,6 @@ if (contactForm) {
         );
 
         if (hasSpamContent) {
-            e.preventDefault();
             showFormStatus('✅ Thank you! Your message has been sent successfully.', 'success');
             setTimeout(() => {
                 contactForm.reset();
@@ -581,20 +532,60 @@ if (contactForm) {
             return;
         }
 
-        // 8. Check message quality (minimum reasonable length)
+        // 6. Check message quality (minimum reasonable length)
         if (message.length < 10) {
-            e.preventDefault();
             showFormStatus('📝 Please provide more details in your message.', 'error');
             messageField.focus();
             return;
         }
 
-        // All client-side checks passed. Show a sending state and let the browser
-        // submit natively to FormSubmit, which will present its captcha and then redirect.
+        // 7. Cloudflare Turnstile must be solved (token is auto-filled into this hidden field)
+        const turnstileField = contactForm.querySelector('[name="cf-turnstile-response"]');
+        if (!turnstileField || !turnstileField.value) {
+            showFormStatus('⚠️ Please complete the verification below before submitting.', 'error');
+            return;
+        }
+
+        // Submit via AJAX to Web3Forms (stays on the same page)
         const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalBtnText = submitBtn.querySelector('span').textContent;
         submitBtn.disabled = true;
         submitBtn.querySelector('span').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        // (No preventDefault here — native submission proceeds.)
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                showFormStatus('✅ Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
+                contactForm.reset();
+                formLoadTime = Date.now();
+                mouseMovements = 0;
+                typingEvents = 0;
+                // Reset the Turnstile widget so a fresh token is required next time
+                if (typeof turnstile !== 'undefined') {
+                    turnstile.reset();
+                }
+            } else {
+                throw new Error(data.message || 'Something went wrong');
+            }
+        } catch (error) {
+            showFormStatus('❌ Oops! There was an error sending your message. Please try again or email us directly at info@koungasolutions.co.nz', 'error');
+            console.error('Form submission error:', error);
+            if (typeof turnstile !== 'undefined') {
+                turnstile.reset();
+            }
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.querySelector('span').textContent = originalBtnText;
+        }
     });
 }
 
