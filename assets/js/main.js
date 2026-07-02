@@ -461,7 +461,7 @@ if (contactForm) {
         // 1. Time-based spam protection (minimum 5 seconds for a realistic human fill)
         const timeSinceLoad = (Date.now() - formLoadTime) / 1000;
         if (timeSinceLoad < 5) {
-            showFormStatus('⏱️ Please take your time filling out the form properly.', 'error');
+            showFormStatus('Please take your time filling out the form properly.', 'error');
             return;
         }
 
@@ -473,7 +473,7 @@ if (contactForm) {
 
             // If typing speed is impossibly fast (more than 10 chars per second)
             if (totalChars / timeSinceLoad > 10) {
-                showFormStatus('⚠️ Please slow down and fill the form carefully.', 'error');
+                showFormStatus('Please slow down and fill the form carefully.', 'error');
                 return;
             }
         }
@@ -482,7 +482,7 @@ if (contactForm) {
         const botcheck = contactForm.querySelector('input[name="botcheck"]');
         if (botcheck && botcheck.checked) {
             // Bot detected - silently fail with a success message to mislead the bot
-            showFormStatus('✅ Thank you! Your message has been sent successfully.', 'success');
+            showFormStatus('Thank you! Your message has been sent successfully.', 'success');
             setTimeout(() => {
                 contactForm.reset();
                 formLoadTime = Date.now();
@@ -492,7 +492,7 @@ if (contactForm) {
 
         // 4. Check for human-like behavior
         if (mouseMovements < 5 && typingEvents < 10) {
-            showFormStatus('⚠️ Please interact with the form naturally.', 'error');
+            showFormStatus('Please interact with the form naturally.', 'error');
             return;
         }
 
@@ -503,7 +503,7 @@ if (contactForm) {
         const trimmedName = nameField.value.trim();
 
         if (!trimmedMessage) {
-            showFormStatus('📝 Please enter a message before submitting.', 'error');
+            showFormStatus('Please enter a message before submitting.', 'error');
             messageField.focus();
             return;
         }
@@ -524,7 +524,7 @@ if (contactForm) {
         );
 
         if (hasSpamContent) {
-            showFormStatus('✅ Thank you! Your message has been sent successfully.', 'success');
+            showFormStatus('Thank you! Your message has been sent successfully.', 'success');
             setTimeout(() => {
                 contactForm.reset();
                 formLoadTime = Date.now();
@@ -534,15 +534,15 @@ if (contactForm) {
 
         // 6. Check message quality (minimum reasonable length)
         if (message.length < 10) {
-            showFormStatus('📝 Please provide more details in your message.', 'error');
+            showFormStatus('Please provide more details in your message.', 'error');
             messageField.focus();
             return;
         }
 
-        // 7. Cloudflare Turnstile must be solved (token is auto-filled into this hidden field)
-        const turnstileField = contactForm.querySelector('[name="cf-turnstile-response"]');
-        if (!turnstileField || !turnstileField.value) {
-            showFormStatus('⚠️ Please complete the verification below before submitting.', 'error');
+        // 7. hCaptcha must be solved (token is auto-filled into this hidden field)
+        const captchaField = contactForm.querySelector('[name="h-captcha-response"]');
+        if (!captchaField || !captchaField.value) {
+            showFormStatus('Please complete the verification below before submitting.', 'error');
             return;
         }
 
@@ -564,23 +564,23 @@ if (contactForm) {
             const data = await response.json();
 
             if (response.ok && data.success) {
-                showFormStatus('✅ Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
+                showFormStatus('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
                 contactForm.reset();
                 formLoadTime = Date.now();
                 mouseMovements = 0;
                 typingEvents = 0;
-                // Reset the Turnstile widget so a fresh token is required next time
-                if (typeof turnstile !== 'undefined') {
-                    turnstile.reset();
+                // Reset the hCaptcha widget so a fresh token is required next time
+                if (typeof hcaptcha !== 'undefined') {
+                    hcaptcha.reset();
                 }
             } else {
                 throw new Error(data.message || 'Something went wrong');
             }
         } catch (error) {
-            showFormStatus('❌ Oops! There was an error sending your message. Please try again or email us directly at info@koungasolutions.co.nz', 'error');
+            showFormStatus('Oops! There was an error sending your message. Please try again or email us directly at info@koungasolutions.co.nz', 'error');
             console.error('Form submission error:', error);
-            if (typeof turnstile !== 'undefined') {
-                turnstile.reset();
+            if (typeof hcaptcha !== 'undefined') {
+                hcaptcha.reset();
             }
         } finally {
             submitBtn.disabled = false;

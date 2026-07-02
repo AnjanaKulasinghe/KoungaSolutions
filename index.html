@@ -79,8 +79,8 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Cloudflare Turnstile (server-side verified by Web3Forms) -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- Web3Forms client script (renders hCaptcha, verified server-side by Web3Forms) -->
+    <script src="https://web3forms.com/client/script.js" async defer></script>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -609,10 +609,9 @@
                         <label for="message">Your Message *</label>
                     </div>
 
-                    <!-- Human Verification (Cloudflare Turnstile - verified server-side by Web3Forms) -->
-                    <!-- TODO: replace with your real Turnstile site key from the Cloudflare dashboard -->
+                    <!-- Human Verification (hCaptcha - free, verified server-side by Web3Forms) -->
                     <div class="verification-group">
-                        <div class="cf-turnstile" data-sitekey="0x4AAAAAADuUYY_WHX6m6UfR" data-theme="auto"></div>
+                        <div class="h-captcha" data-captcha="true"></div>
                     </div>
 
                     <button type="submit" class="submit-btn">
