@@ -1120,6 +1120,14 @@ section {
     justify-content: center;
 }
 
+.products-page-hero .section-subtitle {
+    margin-bottom: 26px;
+}
+
+.products-page-hero .hero-buttons {
+    gap: 16px;
+}
+
 .founder-expertise {
     max-width: 900px;
     margin: 0 auto;
@@ -1489,6 +1497,7 @@ section {
 
 .products-contact .hero-buttons {
     justify-content: center;
+    align-items: center;
 }
 
 .contact-container {
