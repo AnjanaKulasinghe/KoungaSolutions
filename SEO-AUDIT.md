@@ -31,7 +31,7 @@ IT consulting, branding/design and support remain on the homepage. A standalone 
 
 The homepage now visibly identifies AJ&W Consulting Limited as trading as Kounga Solutions and Anjana Kulasinghe as founder and director. Organization/Person JSON-LD connects the company, founder and professional profile. Kounga Games is represented as a Brand under that Organization. The provided brief establishes these relationships; gender is represented in schema, while visible content uses the role without gendered pronouns.
 
-The owner confirms that AJ&W Consulting Limited is the legal company behind all five products and that Kounga Games is its publishing brand. The public [founder portfolio](https://anjanakulasinghe.com/) lists the founder's design/build work across KoungaClub, PerkyLoop, Body Progress, TripMate and Kounga Test Results Dashboard. The [Body Progress site](https://bodyprogress.koungasolutions.co.nz/) cross-links Kounga Solutions and its footer identifies Kounga Games, now understood as the company's brand. The product directory connects every SoftwareApplication's creator and publisher to the company and preserves each official product name and URL.
+The owner confirms that AJ&W Consulting Limited is the legal company behind all six products and that Kounga Games is its publishing brand. The public [founder portfolio](https://anjanakulasinghe.com/) lists design/build work across KoungaClub, PerkyLoop, Body Progress, TripMate and Kounga Test Results Dashboard. Kounga Engage is additionally identified by the owner as the company's largest and latest product and links to its [official website](https://engage.koungasolutions.co.nz/). The [Body Progress site](https://bodyprogress.koungasolutions.co.nz/) cross-links Kounga Solutions and its footer identifies Kounga Games, now understood as the company's brand. The product directory connects every SoftwareApplication's creator and publisher to the company and preserves each official product name and URL. Detailed Kounga Engage features could not be retrieved during this update, so no specific capability claims were added.
 
 Remaining product-specific commercial and support details:
 
@@ -40,6 +40,7 @@ Remaining product-specific commercial and support details:
 - **Body Progress:** company ownership is confirmed; its public footer uses the Kounga Games brand. Verify current app availability, commercial terms, and support channel.
 - **TripMate:** company ownership is confirmed; verify current availability, platform listings, commercial terms, and support channel.
 - **Kounga Test Results Dashboard:** company ownership is confirmed; its public footer uses the Kounga Games brand. Verify current access model, commercial terms, and support channel.
+- **Kounga Engage:** company ownership is confirmed; owner identifies it as the largest and latest product. Verify current capabilities, commercial terms, availability and support channel.
 
 ## Technical and conversion findings
 

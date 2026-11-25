@@ -21,7 +21,7 @@
 - Use actual Search Console queries and sales questions to improve content on the existing software-development, test-automation and product routes.
 - Create a service page only when scope, deliverables, target customer and differentiation are confirmed. IT consulting, branding/design and support remain homepage topics until then.
 - Gather client permission and verifiable project facts before adding case studies, client names, logos, outcomes or testimonials.
-- Confirm current product details and support arrangements before considering product detail pages or adding more product-specific structured data. The five current product entities are already connected to their confirmed legal company in the directory markup.
+- Confirm current product details and support arrangements before considering product detail pages or adding more product-specific structured data. The six current product entities are already connected to their confirmed legal company in the directory markup.
 
 ## Days 61–90 and recurring work
 

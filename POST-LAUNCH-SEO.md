@@ -42,6 +42,8 @@ curl -sSIL https://koungasolutions.co.nz/
 
 Expected: preferred `www` URLs return 200; apex redirects once to the preferred HTTPS host with no loop. Repeat for `http://koungasolutions.co.nz/` and `http://www.koungasolutions.co.nz/`. For each HTML URL, view source and confirm its single canonical matches the exact URL above.
 
+If a header link is visible but its destination fails, copy the link's actual `href` and request that exact path directly. A `404` means the published artifact or path is wrong; confirm the GitHub Pages deployment completed from the intended `main` commit and includes the route's `index.html` file before changing source links. If the direct route returns `200` but a cached page differs, hard-refresh or use a private browser window and verify the deployment/cache before editing the href. The current source uses root-relative links, which are correct for the canonical custom domain.
+
 Public landing pages:
 
 - `https://www.koungasolutions.co.nz/`
@@ -104,6 +106,6 @@ These commands require an approved release and internet access. Preserve reports
 
 ## 9. Business and product confirmation
 
-Company ownership of KoungaClub, PerkyLoop, Body Progress, TripMate and Kounga Test Results Dashboard is confirmed; Kounga Games is a publishing brand under the same legal company. The directory's `SoftwareApplication` entities identify AJ&W Consulting Limited/Kounga Solutions as creator and publisher. Before adding more detail, confirm each product's current availability, pricing/terms, platform listings and support arrangements. Preserve the products' individual public names and official-site links.
+Company ownership of KoungaClub, PerkyLoop, Body Progress, TripMate, Kounga Test Results Dashboard and Kounga Engage is confirmed; Kounga Games is a publishing brand under the same legal company. The directory's `SoftwareApplication` entities identify AJ&W Consulting Limited/Kounga Solutions as creator and publisher. Before adding more detail, confirm each product's current availability, pricing/terms, platform listings and support arrangements. Preserve the products' individual public names and official-site links.
 
 See [SEO-AUDIT.md](SEO-AUDIT.md) for the evidence and [SEO-REPORT.md](SEO-REPORT.md) for implementation status categories.

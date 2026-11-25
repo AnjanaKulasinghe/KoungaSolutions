@@ -173,12 +173,8 @@
         </a>
         <ul class="nav-links" id="primary-navigation">
             <li><a href="#services">Services</a></li>
-            <li><a href="/services/software-development/">Software Development</a></li>
-            <li><a href="/services/test-automation/">Test Automation</a></li>
             <li><a href="/products/">Products</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact-form">Contact</a></li>
         </ul>
         <button class="mobile-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation" onclick="toggleMobileMenu()">
@@ -327,12 +323,20 @@
             <p class="section-subtitle">AJ&amp;W Consulting Limited, trading as Kounga Solutions, is an Auckland technology company established in 2017.</p>
         </div>
 
-        <div class="about-content" data-aos="fade-up">
-            <p>Kounga Solutions provides professional technology services and develops software products. The company works with businesses on custom software, web and mobile applications, software quality, technology consulting, design and support.</p>
+        <div class="about-content">
+            <article class="about-panel" data-aos="fade-up">
+                <span class="about-kicker">What we do</span>
+                <h3>Technology services and software products</h3>
+                <p>Kounga Solutions works with businesses on custom software and apps, quality engineering, technology consulting, design and support. The company also develops its own software products.</p>
+                <a class="service-link" href="#services">Explore our services <span aria-hidden="true">&rarr;</span></a>
+            </article>
 
-            <p>Founder and director Anjana Kulasinghe leads the company. The public professional portfolio documents experience in software quality engineering and products across mobile apps, digital loyalty, fitness tracking, travel planning and test reporting. <a href="/products/">Explore Kounga Solutions' software product portfolio</a> or read <a href="https://anjanakulasinghe.com/">the founder's professional profile</a>.</p>
-
-            <p>Ready to transform your business with technology? Let's build something amazing together.</p>
+            <article class="about-panel" data-aos="fade-up" data-aos-delay="100">
+                <span class="about-kicker">Software products</span>
+                <h3>Distinct products, one company</h3>
+                <p>AJ&amp;W Consulting Limited is the legal company behind the Kounga Solutions software product portfolio. Kounga Games is a publishing brand operating under the same company; each product keeps its own name and official website.</p>
+                <a class="service-link" href="/products/">Explore the product portfolio <span aria-hidden="true">&rarr;</span></a>
+            </article>
         </div>
     </section>
 
@@ -345,7 +349,7 @@
         </div>
 
         <div class="team-grid">
-            <div class="team-card" data-aos="fade-up" data-aos-delay="0">
+            <a class="team-card" href="https://anjanakulasinghe.com/" target="_blank" rel="noopener noreferrer" aria-label="View Anjana Kulasinghe's professional profile" data-aos="fade-up" data-aos-delay="0">
                 <picture>
                     <source srcset="assets/images/AnjanaKulasinghe.webp" type="image/webp">
                     <img src="assets/images/AnjanaKulasinghe.png" alt="Anjana Kulasinghe" loading="lazy" decoding="async">
@@ -353,10 +357,11 @@
                 <div class="team-overlay">
                     <h3>Anjana Kulasinghe</h3>
                     <p class="role">Founder &amp; Director</p>
+                    <span class="team-profile-link">View professional profile <span aria-hidden="true">&nearr;</span></span>
                 </div>
-            </div>
+            </a>
 
-            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+            <a class="team-card" href="https://genibahar.com/" target="_blank" rel="noopener noreferrer" aria-label="View Geni Bahar's professional profile" data-aos="fade-up" data-aos-delay="100">
                 <picture>
                     <source srcset="assets/images/Geni.webp" type="image/webp">
                     <img src="assets/images/Geni.png" alt="Geni Bahar" loading="lazy" decoding="async">
@@ -364,8 +369,9 @@
                 <div class="team-overlay">
                     <h3>Geni Bahar</h3>
                     <p class="role">Head of Customer Relationships</p>
+                    <span class="team-profile-link">View professional profile <span aria-hidden="true">&nearr;</span></span>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 

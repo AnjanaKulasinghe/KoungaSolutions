@@ -248,8 +248,8 @@ def main() -> int:
     if products_page in structured_items:
         product_items = structured_items[products_page]
         applications = [item for item in product_items if item.get("@type") == "SoftwareApplication"]
-        if len(applications) != 5:
-            errors.append("products page JSON-LD must describe all five company software products")
+        if len(applications) != 6:
+            errors.append("products page JSON-LD must describe all six company software products")
         lists = [item for item in product_items if item.get("@type") == "ItemList"]
         if lists:
             listed_ids = {

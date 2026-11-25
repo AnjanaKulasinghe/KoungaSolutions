@@ -8,7 +8,7 @@ Use this when adding a service, product, case study, guide, or other public page
 - [ ] Check existing pages and GSC queries to avoid cannibalising an existing page.
 - [ ] Confirm service scope, locations, process, technologies, prices, credentials, outcome data, and client permissions with an owner.
 - [ ] Keep legal entity, trading name, founder/director role, business age and product relationships consistent with owner-confirmed facts.
-- [ ] For products without an owner-confirmed company relationship, confirm the legal owner before ownership claims or SoftwareApplication markup. For KoungaClub, PerkyLoop, Body Progress, TripMate and Kounga Test Results Dashboard, AJ&W Consulting Limited is confirmed as the company behind the product; verify product-specific commercial/support details separately.
+- [ ] For products without an owner-confirmed company relationship, confirm the legal owner before ownership claims or SoftwareApplication markup. For KoungaClub, PerkyLoop, Body Progress, TripMate, Kounga Test Results Dashboard and Kounga Engage, AJ&W Consulting Limited is confirmed as the company behind the product; verify product-specific commercial/support details separately.
 - [ ] Add useful original information; do not create thin duplicate or doorway pages.
 
 ## Page content and accessibility
