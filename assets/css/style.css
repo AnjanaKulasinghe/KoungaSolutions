@@ -1404,7 +1404,7 @@ section {
     min-width: 0;
 }
 
-.author-info h4 {
+.author-info h3 {
     font-size: 16px;
     margin-bottom: 5px;
     word-wrap: break-word;
@@ -2431,7 +2431,7 @@ footer {
         height: 50px;
     }
 
-    .author-info h4 {
+    .author-info h3 {
         font-size: 15px;
     }
 
