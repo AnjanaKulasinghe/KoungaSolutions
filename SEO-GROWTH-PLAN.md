@@ -1,6 +1,6 @@
 # SEO Growth Plan
 
-**Updated:** 25 November 2026. The current four-page SEO baseline and design-preserving static checks are documented in [SEO-REPORT.md](SEO-REPORT.md). Publication, visual regression, live measurement and external-account work remain separate.
+**Updated:** 26 November 2026. The four-page November 25 production baseline remains documented in [SEO-REPORT.md](SEO-REPORT.md); the repository now contains seven indexable routes. The three new service routes await authorized publication and production verification.
 
 ## Before release
 
@@ -13,7 +13,7 @@ Visible-content opportunities are recommendations only and require explicit appr
 
 ## First 30 days after release
 
-- Verify HTTPS and redirects, all four canonical routes, robots, sitemap, assets, analytics and contact form.
+- Verify HTTPS and redirects, all seven canonical routes, robots, sitemap, assets, analytics and contact form.
 - Verify Google Search Console and Bing Webmaster Tools, submit the sitemap, and inspect each route. Record the first available query/page impressions, clicks, indexing, canonical selection and field CWV baseline.
 - Confirm GA4 `generate_lead` only records successful submissions and configure it as a conversion/key event if desired.
 - Run mobile/desktop PageSpeed or Lighthouse checks and retain actual reports. Prioritize user-facing bottlenecks rather than chasing scores.
@@ -22,10 +22,12 @@ Visible-content opportunities are recommendations only and require explicit appr
 
 ## Days 31–60
 
-- Use actual Search Console queries and sales questions to improve content on the existing software-development, test-automation and product routes.
-- Create a service page only when scope, deliverables, target customer and differentiation are confirmed. IT consulting, branding/design and support remain homepage topics until then.
+- Use actual Search Console queries and sales questions to review all five service routes and the product directory.
+- The IT consulting, branding/design and IT support routes have been added using the existing approved service descriptions. Confirm target customers, deliverables, exclusions, engagement models and service boundaries before expanding visible content or making response-time/availability claims.
 - Gather client permission and verifiable project facts before adding case studies, client names, logos, outcomes or testimonials.
 - Confirm current product details and support arrangements before considering product detail pages or adding more product-specific structured data. The six current product entities are already connected to their confirmed legal company in the directory markup.
+
+The site remains static. The existing GitHub Actions workflow runs `python scripts/check_seo.py` on pull requests and pushes to `main`; the checker discovers all current `index.html` routes rather than relying on a fixed page count.
 
 ## Days 61–90 and recurring work
 

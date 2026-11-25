@@ -47,3 +47,13 @@ Use this when adding a service, product, case study, guide, or other public page
 - [ ] Validate structured data with Google Rich Results Test when a Google-supported feature applies.
 - [ ] Verify sitemap/indexing in Search Console and Bing Webmaster Tools; monitor actual query and conversion data.
 - [ ] Do not deploy or change external webmaster/business profiles without the appropriate release/account authorization.
+
+## Incremental service-page regression — 26 November 2026
+
+The current local route inventory is seven indexable pages: `/`, `/products/`, `/services/software-development/`, `/services/test-automation/`, `/services/it-consulting/`, `/services/branding-design/`, and `/services/it-support/`. The last three were added after the four-route production baseline and require deployment before production checks can cover them.
+
+- [ ] Give each service route its own intent, title, description, canonical, Open Graph and X/Twitter metadata.
+- [ ] Connect each service `WebPage` and `Service` entity to the shared `#website` and `#organization` IDs; keep provider, URL and Auckland/New Zealand service areas accurate.
+- [ ] Ensure every discovered route has at least one incoming internal link, each service is represented in the XML sitemap once, and all sitemap canonicals use the preferred `https://www` host.
+- [ ] Run the dynamic regression checker, JavaScript syntax check, sitemap XML validation and `git diff --check` before release.
+- [ ] Treat the three newly added routes as pending production verification until an authorized deployment; retain the November 25 production results as the historical four-route baseline.

@@ -1,6 +1,6 @@
 # SEO Strategy: Phase 3
 
-**Updated:** 25 November 2026. Search and product research is a qualitative public-web sample, not a ranking, volume, or difficulty study.
+**Updated:** 26 November 2026. The November 25 baseline is preserved; this update adds three service routes and qualitative, public-web search research. It is not a ranking, volume, or difficulty study.
 
 ## Positioning and audience
 
@@ -18,9 +18,9 @@ Intent targets are derived from page content and current search-result language.
 | Commercial/local | custom software development Auckland; web application development NZ; mobile app development Auckland; AI software solutions NZ | `/services/software-development/` | Implemented. Combines custom software, web apps, native/cross-platform mobile apps and AI-enabled software to avoid competing thin URLs. |
 | Commercial/local | software testing Auckland; test automation services NZ; API test automation; QA automation Auckland | `/services/test-automation/` | Implemented. Covers UI/mobile, API/integration, performance and pipeline QA; no separate API route is justified yet. |
 | Navigational/portfolio | Kounga Solutions software products; Kounga Engage; software products developed by Kounga Solutions | `/products/` | Implemented as the company's portfolio of six products. Kounga Engage is featured as the owner's largest/latest product; product-specific commercial and support details remain to verify. |
-| Commercial | IT consulting Auckland; technology strategy NZ | Homepage service summary | Homepage confirms tech-stack/strategy advice; use cases, deliverables and engagement model are missing for a standalone page. |
-| Commercial | IT support Auckland; 24/7 IT support NZ | Future `/services/it-support/` | Existing site claims 24/7 support; scope, customer eligibility, response expectations and channels need confirmation. |
-| Commercial | branding and graphic design Auckland | Future `/services/branding-design/` | Existing Kounga Creations card supports the offer; deliverables and current priority need confirmation. |
+| Commercial/local | IT consulting Auckland | `/services/it-consulting/` | New page. Targets business technology advice around strategy, technology stack and digital transformation. Do not imply implementation, procurement or a defined engagement model without owner confirmation. |
+| Commercial/local | branding and graphic design Auckland | `/services/branding-design/` | New page. Targets strategic branding, visual identity and graphic design. More concrete deliverables and approved work examples remain opportunities for owner review. |
+| Commercial/local | business IT support Auckland | `/services/it-support/` | New page. Targets business IT/technology support and system continuity. Does not target or promise 24/7, managed services, response times or SLAs; verify service boundaries before adding them. |
 
 Do not create thin suburb pages or split near-identical terms into multiple routes. Keep one distinct search intent per URL.
 
@@ -44,23 +44,25 @@ Public search discovery on 25 November 2026 surfaced these businesses for NZ/Auc
 - [TestPilot](https://www.testpilot.nz/): flexible specialist QA/testing support and engagement positioning.
 - [Orchid](https://www.orchid.co.nz/), [Putti](https://www.puttiapps.com/), and [RR Tech](https://www.rrtech.co.nz/app-development): Auckland providers with custom software, web/mobile app and project-positioning detail.
 
-The current service pages cover the primary relevant search intents, but the public market sample shows that some competitors publish more concrete deliverables, project evidence and engagement scope. This is a content opportunity only, not a reason to add unverified claims or copy competitor positioning. Detailed recommendations with benefits, impact, complexity and approvals are in [SEO-CONTENT-RECOMMENDATIONS.md](SEO-CONTENT-RECOMMENDATIONS.md).
+The service pages now cover five related but distinct intents: implementation/development, software quality/testing, technology advice, visual identity/design, and business IT support. Public Auckland providers often make their deliverables or engagement models more specific; that is a content opportunity only, not a reason to add unverified claims or copy competitor positioning. Details and owner-approval needs are in [SEO-CONTENT-RECOMMENDATIONS.md](SEO-CONTENT-RECOMMENDATIONS.md).
+
+The November 26 qualitative search sample found [Tech Partners](https://www.techpartners.co.nz/) describing IT strategy and roadmap advice; [Brandspired](https://www.brandspired.co.nz/) describing brand strategy, identity and creative implementation; and Auckland IT providers such as [NATC](https://www.natc.co.nz/) and [Action IT](https://www.actionit.co.nz/) describing business IT support and service scope. This illustrates search-result language and the specificity competitors publish. It does not establish rankings, demand, or that Kounga offers the same deliverables.
 
 ## Content authority and next pages
 
-1. Prioritise the two service pages now in place: consolidated software/application development and quality engineering. Validate both against actual enquiries and GSC data after release.
-2. Keep consulting, support and design as homepage topics until service scope, deliverables, target customers and differentiation are confirmed.
+1. Validate all five service pages against actual enquiries and Search Console data after release; use the new pages as the current destinations for consulting, support, and branding/design intent.
+2. Confirm service boundaries, target customers and engagement models for the three new routes before adding claims about deliverables, SLAs, response windows or guarantees.
 3. Gather permissioned case-study information: client consent, challenge, Kounga role, solution, attributable outcome, timeframe and logo/image use.
-5. Add FAQs based on actual customer questions. Use visible HTML answers; do not add FAQ rich-result markup merely for appearance.
-6. Publish technical guides only when an expert can review them and they offer first-hand value, such as API contract testing or choosing regression coverage.
+4. Add FAQs based on actual customer questions. Use visible HTML answers; do not add FAQ rich-result markup merely for appearance.
+5. Publish technical guides only when an expert can review them and they offer first-hand value, such as API contract testing or choosing regression coverage.
 
-All proposed copy, case studies, FAQs, service pages and product-detail additions remain recommendations. Strict design preservation is the active baseline; implementation needs explicit content/design approval and verified facts.
+The three new service routes are implemented in the repository using existing service descriptions and without adding further visible content in this SEO update. Strict design preservation remains the baseline; further copy, case studies, FAQs and offer-detail changes need owner approval and verified facts.
 
 ## Internal linking and conversion
 
-The homepage links directly to software development, test automation and the product portfolio. Both service pages link to the existing contact form; the product directory links to the official product destinations. No screenshots are copied. The short summaries provide directory context without reproducing full product-site content.
+The homepage links to all five service pages and the product portfolio. Service pages link to the existing contact form; the product directory links to official product destinations. No screenshots are copied. The short product summaries provide directory context without reproducing full product-site content.
 
-GA4 already uses `G-C0F9498EJR`; that same ID is on all four indexable routes. A `generate_lead` event fires only after successful contact-form submission and includes only the chosen service value, not name/email/phone/message. Confirm the event in the account and configure it as a conversion; respect the existing privacy/consent requirements.
+GA4 uses `G-C0F9498EJR` across all seven indexable routes. A `generate_lead` event fires only after successful contact-form submission and includes only the chosen service value, not name/email/phone/message. Confirm the event in the account and configure it as a conversion; respect the existing privacy/consent requirements.
 
 ## Local and international SEO
 

@@ -1,9 +1,37 @@
 # SEO Implementation and Production Readiness Report
 
-**Updated:** 25 November 2026
+**Updated:** 26 November 2026 (incremental service-page SEO update; original production validation is dated 25 November)
 **Scope:** Existing implementation, strict-design-preservation review, static regression checks and final local/live release validation. No deployment, production infrastructure or external-account changes were made.
 
-## Implemented and verified locally
+## Incremental SEO update — 26 November 2026
+
+The prior optimization and production check covered four public routes: home, software development, test automation and products. Three service routes were subsequently added. The repository now has **7 indexable public pages**: **4 previously optimized pages + 3 new service pages**. The three new URLs are `/services/it-consulting/`, `/services/branding-design/` and `/services/it-support/`.
+
+- Added unique page-specific social sharing metadata, `twitter:url`, Open Graph/X image alternative text, and the existing GA4 ID to all three new routes. Their titles, descriptions, absolute canonicals, index/follow directives, `en-NZ`, and one-H1 structure are present.
+- Added one `WebPage` and one `Service` JSON-LD entity per new route. Each Service uses the existing shared company provider ID, Auckland and New Zealand service areas, and a route-specific canonical/entity ID. No Organization entity is duplicated.
+- Updated `sitemap.xml` to include all seven canonical public URLs exactly once and set `lastmod` to 26 November for pages changed on that date. The unchanged product route retains its prior date.
+- Extended `scripts/check_seo.py` to validate service entity relationships and internal discoverability across every discovered service route, along with the existing metadata, links, products, sitemap and robots checks. The existing CI workflow already runs this dynamic checker; no workflow change was needed.
+- `robots.txt` remains unchanged and permits general crawling while retaining its sitemap declaration and existing crawler policy.
+- Static local validation on 26 November passed for the seven-route SEO check, JavaScript syntax, sitemap XML and whitespace checks. A temporary localhost server returned HTTP 200 for all seven HTML routes, `robots.txt` and `sitemap.xml`. HTML Tidy is installed but rejects standard HTML5 elements in this environment; no conforming HTML5 validator or browser is available. Visual screenshots, Lighthouse/CWV and production response checks were therefore not claimed for the new pages.
+- No visible text, layout, styles, interactions, images or navigation were changed in this SEO-only update. Deployment is not authorized here; the new routes remain pending production verification.
+
+### Qualitative service keyword map
+
+| New URL | Primary topic | Supporting topics | Intent boundary |
+|---|---|---|---|
+| `/services/it-consulting/` | IT consulting Auckland | technology strategy, technology stack advice, digital transformation consulting | Advisory discovery; do not imply an unverified delivery or procurement scope. |
+| `/services/branding-design/` | branding and graphic design Auckland | brand identity design, visual identity, strategic branding | Brand/creative intent; keep distinct from app/web implementation. |
+| `/services/it-support/` | business IT support Auckland | business technology support, support for business systems | Support intent; do not target 24/7, managed services, SLA or response-time promises until confirmed. |
+
+These topics are qualitative page-to-query mappings, not measured search volume, rank or difficulty. Public Auckland positioning examples include [Tech Partners](https://www.techpartners.co.nz/) (IT strategy/roadmaps), [Brandspired](https://www.brandspired.co.nz/) (brand strategy and identity), [NATC](https://www.natc.co.nz/) and [Action IT](https://www.actionit.co.nz/) (business IT support). Their content informs terminology and specificity opportunities only; Kounga's services should not be assumed to match theirs.
+
+### Remaining approval and release work
+
+- Confirm customer types, deliverables, exclusions and engagement models for the consulting, design and support offers before adding visible detail. In particular, confirm support hours, channels and response commitments before stating them.
+- Browser screenshots, desktop/mobile rendering, physical-device behavior and Lighthouse/CWV results for the new routes remain unverified; no browser runtime is available in this environment.
+- After an authorized deployment, check all seven production pages, sitemap discovery, canonical selection, indexing and GA4 receipt in Search Console, Bing and GA4. The November 25 four-route production findings remain historical and have not been invalidated.
+
+## Original implementation and production validation — 25 November 2026
 
 - Corporate identity is represented as **AJ&W Consulting Limited, trading as Kounga Solutions**, an Auckland technology company established in 2017. The founder is identified as Anjana Kulasinghe, founder and director. Kounga Games is represented as a publishing brand operating under the same company.
 - Four crawlable routes are present: `/`, `/services/software-development/`, `/services/test-automation/`, and `/products/`.
@@ -16,6 +44,18 @@
 - `python3 scripts/check_seo.py` passed for all four routes, metadata uniqueness, canonicals, local assets/links/fragments, image alt text, JSON-LD syntax/types, sitemap coverage and robots rules.
 - `node --check assets/js/main.js` and `git diff --check` passed.
 - The site is static and has no configured package/build script; there was no separate production build to run.
+
+### Incremental validation results — 26 November 2026
+
+- `python3 scripts/check_seo.py` — **passed** for 7 pages, 21 images and 7 sitemap routes. It checks metadata uniqueness, indexability, canonical/social URL matching, local references and fragments, incoming internal links, duplicate IDs, JSON-LD syntax and shared Organization/WebSite/Service relationships, product entity relationships, sitemap parity and robots policy.
+- Local HTTP route check — **passed**, 9/9 responses returned HTTP 200: seven HTML pages, `robots.txt` and `sitemap.xml`.
+- `node --check assets/js/main.js` — **passed**. `xmllint --noout sitemap.xml` — **passed**. `git diff --check` — **passed**.
+- HTML conformance — **not verified**. The installed Apple HTML Tidy is a 2006 build and reports standard HTML5 elements (`canvas`, `nav`, `picture`, `main`, `section`) as unrecognized. No conforming local HTML5 validator was available. The November 25 Nu results apply to the four production pages checked then.
+- Browser/visual comparison — **not performed**. No browser executable is installed in this environment. This SEO-only update changed head metadata, JSON-LD, validation code, sitemap and documentation; it changed no visible copy, CSS, presentation or interaction. This is not a screenshot-based equivalence claim.
+- Production/live SEO — **pending** for the three new routes. No deployment, Search Console/Bing inspection, live canonical check, indexing request, form submission, GA4 Realtime check, or Lighthouse/Core Web Vitals measurement was performed.
+- Existing SEO regression — **none found by available automated checks**. The four-page production verification remains a November 25 historical snapshot and does not verify the three new routes.
+
+**Current readiness: CONDITIONAL GO** for a separately authorized deployment after the owner confirms that visible consulting, branding/design and support descriptions accurately represent the services. Then verify all seven public URLs using [POST-LAUNCH-SEO.md](POST-LAUNCH-SEO.md). No deployment is authorized by this report.
 
 ## Still awaiting account access or controlled testing
 
@@ -40,7 +80,7 @@
 
 ## Requires external account access
 
-- Verify ownership of Google Search Console and Bing Webmaster Tools, submit the production sitemap, and inspect all four URLs.
+- Verify ownership of Google Search Console and Bing Webmaster Tools, submit the production sitemap, and inspect all seven current URLs after deployment.
 - Confirm GA4 ID `G-C0F9498EJR` belongs to the intended property and configure conversion reporting.
 - Confirm Google Business Profile eligibility and owner-approved business details.
 
@@ -53,7 +93,7 @@
 
 ## Production checklist and exact targets
 
-Verify `https://www.koungasolutions.co.nz/`, `/services/software-development/`, `/services/test-automation/`, `/products/`, `/robots.txt` and `/sitemap.xml`. Run the commands in `POST-LAUNCH-SEO.md`, then check redirects, metadata, indexability, analytics and field/lab performance using the listed Google and Bing tools.
+Verify `https://www.koungasolutions.co.nz/`, `/services/software-development/`, `/services/test-automation/`, `/services/it-consulting/`, `/services/branding-design/`, `/services/it-support/`, `/products/`, `/robots.txt` and `/sitemap.xml`. The November 25 production results cover the first four routes only; check the three new service routes after an authorized deployment.
 
 ## Final release validation — 25 November 2026
 

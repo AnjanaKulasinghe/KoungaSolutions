@@ -1,9 +1,9 @@
 # SEO Content Recommendations
 
-**Prepared:** 25 November 2026
+**Prepared:** 25 November 2026; route map updated 26 November 2026
 **Status:** Recommendations only. No visible website content or design changes are authorised by this report.
 
-These opportunities are based on the existing four-page site, owner-confirmed business relationships, and a qualitative public-search sample. They do not include measured search volume, ranking, or traffic estimates. Any implementation requires explicit approval and factual review.
+These opportunities are based on the seven-page repository, owner-confirmed business relationships, and a qualitative public-search sample. They do not include measured search volume, ranking, or traffic estimates. Any visible-content implementation requires explicit approval and factual review.
 
 | Priority | Proposed change | SEO justification and expected benefit | Affected pages | Visual impact | Complexity | Approval / evidence required |
 |---|---|---|---|---|---|---|
@@ -12,18 +12,30 @@ These opportunities are based on the existing four-page site, owner-confirmed bu
 | High | Clarify QA/test-automation engagement scope and deliverables | Public QA providers describe methods such as end-to-end, API and CI/CD testing and their outputs. Specific confirmed scope may better align the page with test-automation and software-QA searches. | `/services/test-automation/` | Medium: copy changes and potentially a visible deliverables section | Medium | Confirm tools and capabilities actually offered, engagement model, deliverables, exclusions and team capacity. |
 | Medium | Add concise FAQs sourced from real prospects and customers | Answers to recurring decision questions can improve usefulness and capture long-tail intent without creating thin keyword pages. FAQ rich-result eligibility is not assumed. | Existing software-development, test-automation or products page | Medium: visible page expansion and new layout elements | Low to medium | Collect actual questions from enquiries/sales conversations; approve accurate answers and design treatment. |
 | Medium | Add current, product-specific availability, commercial path and support details | These details help product-intent visitors choose the right official destination and reduce uncertainty. The product owner confirms company ownership, but product-specific arrangements remain open. | `/products/`; official product sites are outside this repository | Medium: card or detail-copy updates | Low to medium per product | Verify each product's release/availability state, terms/pricing, sales route, supported platforms and support channel. Get approval for any edits to external sites. |
-| Later | Expand consulting, branding/design or support into distinct landing pages | Separate pages may serve distinct commercial intents only if each service has enough unique scope and evidence. The current site does not yet provide enough detail to justify new URLs. | Homepage topics; possible future service pages | High: new pages, navigation/internal links and content | High | Confirm target customer, deliverables, exclusions, process, evidence and priority; approve page creation and design. |
+| Medium | Clarify service boundaries and engagement models on the new consulting, branding/design and IT support pages | Distinct routes now map the three services to separate commercial intents. Clear, verified scope can help qualify enquiries and distinguish advisory, creative and support work without expanding into unsupported claims. | `/services/it-consulting/`, `/services/branding-design/`, `/services/it-support/` | Medium: visible copy changes; maintain approved page layouts | Medium | Confirm audience, actual deliverables, exclusions, engagement model, support hours/response expectations and evidence; owner approval required before changing visible copy. |
 | Later | Improve local business profile completeness and corroboration | Accurate business profiles can strengthen local discovery and company identity consistency. This is an external account action, not a repository change. | Google Business Profile and relevant business directories | None to website; external profile content changes | Low to medium | Verify eligibility, contact details, service area, category, hours and account ownership before editing or creating profiles. |
 
 ## Evidence and limits
 
 A qualitative public search sample found Auckland software providers describing custom software, mobile/web apps and AI, including [Putti](https://www.puttiapps.com/), [Orchid](https://www.orchid.co.nz/) and [RR Tech](https://www.rrtech.co.nz/app-development). In QA, [UTUM](https://www.utum.co.nz/) publishes automation, REST API testing and CI/CD integration details; [Pattern](https://www.pattern.co.nz/services/development/testing-qa/) describes end-to-end testing and deliverables. These pages illustrate the type of detail available in the market. They do not establish competitor rankings, search volumes, or that Kounga provides the same scope.
 
-The current keyword-to-page map remains:
+For the new service intents, public Auckland examples include [Tech Partners](https://www.techpartners.co.nz/) for IT strategy/roadmaps, [Brandspired](https://www.brandspired.co.nz/) for brand strategy and identity, and [NATC](https://www.natc.co.nz/) and [Action IT](https://www.actionit.co.nz/) for business IT support. These inform terminology and scope-evidence recommendations only; no competitor performance data or equivalent Kounga capabilities are inferred.
+
+The current keyword-to-page map is qualitative:
 
 - `/`: Auckland software development company and broad technology-services discovery.
 - `/services/software-development/`: custom software development, web application development and mobile app development for Auckland/New Zealand businesses.
 - `/services/test-automation/`: software testing, QA automation, API/integration testing and test automation in Auckland/New Zealand.
+- `/services/it-consulting/`: IT consulting Auckland, technology strategy and technology stack advice; keep this advisory intent distinct from software implementation.
+- `/services/branding-design/`: branding and graphic design Auckland, brand identity and visual identity design.
+- `/services/it-support/`: business IT support Auckland, business technology support and system continuity; do not imply 24/7 cover, managed services or SLAs until confirmed.
 - `/products/`: Kounga Solutions software portfolio and branded product discovery, with product-specific details delegated to the official sites.
+
+### Audience, long-tail and overlap notes for the new pages
+
+- **IT consulting:** businesses and decision-makers considering their IT strategy, technology stack or digital transformation; long-tail opportunities include “IT strategy advice for Auckland businesses” and “technology stack consulting Auckland.” Keep advisory research distinct from the custom software build intent on `/services/software-development/`.
+- **Branding/design:** businesses seeking a brand direction or visual identity, including graphic design; long-tail opportunities include “brand identity design Auckland” and “graphic design for businesses Auckland.” Do not imply web development is included just because it appears in other Kounga service pages.
+- **IT support:** businesses looking for help with technology issues and business systems; long-tail opportunities include “business technology support Auckland” and “IT help for Auckland businesses.” Keep support separate from test automation and software delivery; avoid “managed IT,” 24/7, specific response windows and service-level claims until verified.
+- **Geography:** Auckland and New Zealand are supported by the existing company positioning. No suburb pages, industry-specific positioning or wider international availability are inferred.
 
 Use Search Console queries and qualified enquiry language to refine this map after a verified baseline exists. Do not infer volume, difficulty, rank, or expected traffic from a search-result sample.

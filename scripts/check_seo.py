@@ -31,6 +31,7 @@ class PageParser(HTMLParser):
         self.ids: set[str] = set()
         self.images: list[tuple[str, str | None]] = []
         self.external_links: list[str] = []
+        self.local_links: list[str] = []
         self.local_references: list[str] = []
         self.fragment_references: list[tuple[str, str]] = []
         self.json_ld: list[str] = []
@@ -83,6 +84,8 @@ class PageParser(HTMLParser):
             parsed_href = urlparse(href)
             if parsed_href.scheme in {"http", "https"}:
                 self.external_links.append(href)
+            elif not href.startswith("//"):
+                self.local_links.append(href)
             self._record_reference(href)
         for key in ("src", "srcset"):
             value = attr.get(key)
@@ -179,7 +182,7 @@ def main() -> int:
             errors.append(f"{relative}: mobile navigation toggle needs a name and aria-expanded")
         if parser.analytics_ids != ["G-C0F9498EJR"]:
             errors.append(f"{relative}: expected exactly one existing GA4 tag")
-        for required_property in ("og:title", "og:description", "og:url", "og:image", "og:site_name", "og:image:alt"):
+        for required_property in ("og:type", "og:title", "og:description", "og:url", "og:image", "og:image:alt", "og:site_name", "og:locale"):
             if f"{required_property}" not in parser.open_graph:
                 errors.append(f"{relative}: missing Open Graph {required_property}")
             values = parser.metadata.get(required_property, [])
@@ -208,6 +211,29 @@ def main() -> int:
             errors.append(f"{relative}: Twitter and Open Graph titles must match")
         if parser.metadata.get("twitter:image") != og_images:
             errors.append(f"{relative}: Twitter and Open Graph images must match")
+        if parser.metadata.get("twitter:description") != parser.metadata.get("og:description"):
+            errors.append(f"{relative}: Twitter and Open Graph descriptions must match")
+        if parser.metadata.get("twitter:image:alt") != parser.metadata.get("og:image:alt"):
+            errors.append(f"{relative}: Twitter and Open Graph image alternative text must match")
+
+    # Every discovered static route should be reachable through an internal link.
+    inbound_links: dict[Path, set[Path]] = {page: set() for page in pages}
+    for source_page, parser in parsed_pages.items():
+        for href in parser.local_links:
+            parsed_href = urlparse(href)
+            if parsed_href.path.startswith("/"):
+                target = (ROOT / parsed_href.path.lstrip("/")).resolve()
+            elif parsed_href.path:
+                target = (source_page.parent / parsed_href.path).resolve()
+            else:
+                target = source_page
+            if target.is_dir():
+                target = target / "index.html"
+            if target in inbound_links and target != source_page:
+                inbound_links[target].add(source_page)
+    for page, sources in inbound_links.items():
+        if not sources:
+            errors.append(f"{page.relative_to(ROOT)}: public route is orphaned from internal links")
 
     for page, parser in parsed_pages.items():
         for reference in set(parser.local_references):
@@ -237,6 +263,8 @@ def main() -> int:
 
     structured_types: dict[Path, set[str]] = {}
     structured_items: dict[Path, list[dict]] = {}
+    defined_organization_ids: list[str] = []
+    defined_website_ids: list[str] = []
     for page, parser in parsed_pages.items():
         types: set[str] = set()
         items: list[dict] = []
@@ -255,6 +283,10 @@ def main() -> int:
                     elements = item.get("itemListElement", [])
                     if item.get("numberOfItems") != len(elements):
                         errors.append(f"{relative}: ItemList numberOfItems does not match its entries")
+                if isinstance(item, dict) and item.get("@type") == "Organization" and item.get("@id"):
+                    defined_organization_ids.append(item["@id"])
+                if isinstance(item, dict) and item.get("@type") == "WebSite" and item.get("@id"):
+                    defined_website_ids.append(item["@id"])
         structured_types[page] = types
         structured_items[page] = items
         if "WebPage" not in types:
@@ -282,12 +314,51 @@ def main() -> int:
             errors.append("homepage Person JSON-LD must use Founder and Director as the role")
         if organization.get("brand", {}).get("@id") != publisher_brand.get("@id") or publisher_brand.get("name") != "Kounga Games":
             errors.append("homepage JSON-LD must connect the Kounga Games brand to the legal company")
-    service_page = ROOT / "services" / "test-automation" / "index.html"
-    if service_page in structured_types and "Service" not in structured_types[service_page]:
-        errors.append("test automation page JSON-LD must include Service")
-    software_page = ROOT / "services" / "software-development" / "index.html"
-    if software_page in structured_types and "Service" not in structured_types[software_page]:
-        errors.append("software development page JSON-LD must include Service")
+    company_id = f"{SITE_ORIGIN}/#organization"
+    website_id = f"{SITE_ORIGIN}/#website"
+    if defined_organization_ids != [company_id]:
+        errors.append("the legal company Organization must be defined exactly once with the shared company ID")
+    if defined_website_ids != [website_id]:
+        errors.append("the WebSite entity must be defined exactly once with the shared website ID")
+
+    service_ids: list[str] = []
+    for page in pages:
+        if page.parent.parent != ROOT / "services":
+            continue
+        relative = page.relative_to(ROOT).as_posix()
+        canonical = public_url(page)
+        items = structured_items.get(page, [])
+        webpage_items = [item for item in items if item.get("@type") == "WebPage"]
+        services = [item for item in items if item.get("@type") == "Service"]
+        expected_webpage_id = f"{canonical}#webpage"
+        expected_service_id = f"{canonical}#service"
+        if len(webpage_items) != 1:
+            errors.append(f"{relative}: JSON-LD must define exactly one WebPage entity")
+        else:
+            webpage = webpage_items[0]
+            if webpage.get("@id") != expected_webpage_id or webpage.get("url") != canonical:
+                errors.append(f"{relative}: WebPage JSON-LD must use its canonical URL and #webpage ID")
+            if webpage.get("isPartOf", {}).get("@id") != website_id:
+                errors.append(f"{relative}: WebPage must reference the shared WebSite entity")
+            if webpage.get("about", {}).get("@id") != expected_service_id:
+                errors.append(f"{relative}: WebPage must reference its own Service entity")
+        if len(services) != 1:
+            errors.append(f"{relative}: JSON-LD must define exactly one Service entity")
+            continue
+        service = services[0]
+        service_ids.append(service.get("@id", ""))
+        if service.get("@id") != expected_service_id or service.get("url") != canonical:
+            errors.append(f"{relative}: Service JSON-LD must use its canonical URL and #service ID")
+        if not service.get("name") or not service.get("serviceType") or not service.get("description"):
+            errors.append(f"{relative}: Service JSON-LD must identify its name, type and description")
+        if service.get("provider", {}).get("@id") != company_id:
+            errors.append(f"{relative}: Service provider must reference the shared Kounga Solutions Organization")
+        area = service.get("areaServed", [])
+        area_names = {item.get("name") for item in area if isinstance(item, dict)}
+        if not {"Auckland", "New Zealand"}.issubset(area_names):
+            errors.append(f"{relative}: Service areaServed must include Auckland and New Zealand")
+    if len(service_ids) != len(set(service_ids)):
+        errors.append("service entity IDs must be unique across service pages")
     products_page = ROOT / "products" / "index.html"
     if products_page in structured_types and "ItemList" not in structured_types[products_page]:
         errors.append("products page JSON-LD must include ItemList")
