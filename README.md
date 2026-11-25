@@ -19,6 +19,9 @@ KoungaSolutions/
  services/
     software-development/index.html     # Custom software, web, mobile and AI software
     test-automation/index.html           # QA and test automation service
+    it-consulting/index.html             # IT consulting and technology strategy
+    branding-design/index.html            # Kounga Creations branding and design
+    it-support/index.html                # Kounga Support technology support
  products/index.html                    # Company software product directory
  sitemap.xml                            # SEO sitemap
  robots.txt                             # Search engine directives
