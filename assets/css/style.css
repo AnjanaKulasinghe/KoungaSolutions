@@ -2387,11 +2387,6 @@ footer {
         margin: 0 auto;
     }
 
-    #team [data-aos] {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-
     .testimonials-container {
         max-width: 100%;
         width: 100%;
