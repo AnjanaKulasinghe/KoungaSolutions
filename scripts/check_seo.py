@@ -30,6 +30,7 @@ class PageParser(HTMLParser):
         self.h1_count = 0
         self.ids: set[str] = set()
         self.images: list[tuple[str, str | None]] = []
+        self.external_links: list[str] = []
         self.local_references: list[str] = []
         self.fragment_references: list[tuple[str, str]] = []
         self.json_ld: list[str] = []
@@ -37,6 +38,8 @@ class PageParser(HTMLParser):
         self.json_ld_parts: list[str] = []
         self.nav_toggle: tuple[str | None, str | None] | None = None
         self.open_graph: set[str] = set()
+        self.metadata: dict[str, list[str]] = {}
+        self.duplicate_ids: set[str] = set()
         self.analytics_ids: list[str] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
@@ -49,13 +52,20 @@ class PageParser(HTMLParser):
         if tag == "h1":
             self.h1_count += 1
         if attr.get("id"):
-            self.ids.add(attr["id"] or "")
+            element_id = attr["id"] or ""
+            if element_id in self.ids:
+                self.duplicate_ids.add(element_id)
+            self.ids.add(element_id)
         if tag == "img":
             self.images.append((attr.get("src") or "", attr.get("alt")))
-        if tag == "meta" and attr.get("name", "").lower() == "description":
-            self.descriptions.append(attr.get("content") or "")
-        if tag == "meta" and (attr.get("property") or "").startswith("og:"):
-            self.open_graph.add(attr["property"] or "")
+        if tag == "meta":
+            metadata_key = (attr.get("name") or attr.get("property") or "").lower()
+            if metadata_key:
+                self.metadata.setdefault(metadata_key, []).append(attr.get("content") or "")
+            if metadata_key == "description":
+                self.descriptions.append(attr.get("content") or "")
+            if metadata_key.startswith("og:"):
+                self.open_graph.add(metadata_key)
         if tag == "link" and "canonical" in (attr.get("rel") or "").lower().split():
             self.canonicals.append(attr.get("href") or "")
         if tag == "script" and attr.get("type") == "application/ld+json":
@@ -70,6 +80,9 @@ class PageParser(HTMLParser):
 
         href = attr.get("href")
         if href:
+            parsed_href = urlparse(href)
+            if parsed_href.scheme in {"http", "https"}:
+                self.external_links.append(href)
             self._record_reference(href)
         for key in ("src", "srcset"):
             value = attr.get(key)
@@ -147,21 +160,54 @@ def main() -> int:
             page_descriptions[description] = page
         if parser.canonicals != [expected_url]:
             errors.append(f"{relative}: canonical must be exactly {expected_url}")
+        robots_values = parser.metadata.get("robots", [])
+        if len(robots_values) != 1:
+            errors.append(f"{relative}: must have exactly one robots meta directive")
+        else:
+            robots_tokens = {token.strip().lower() for token in robots_values[0].split(",")}
+            if not {"index", "follow"}.issubset(robots_tokens) or "noindex" in robots_tokens:
+                errors.append(f"{relative}: public page must remain indexable and followable")
         if parser.language.lower() != "en-nz":
             errors.append(f"{relative}: must declare lang=en-NZ")
         if parser.h1_count != 1:
             errors.append(f"{relative}: expected one h1, found {parser.h1_count}")
         if any(alt is None for _, alt in parser.images):
             errors.append(f"{relative}: every img element must include alt text")
-        if any(not alt.strip() for _, alt in parser.images if alt is not None):
-            errors.append(f"{relative}: image alt text must not be empty")
+        if parser.duplicate_ids:
+            errors.append(f"{relative}: duplicate HTML id values: {', '.join(sorted(parser.duplicate_ids))}")
         if parser.nav_toggle is None or not all(parser.nav_toggle):
             errors.append(f"{relative}: mobile navigation toggle needs a name and aria-expanded")
         if parser.analytics_ids != ["G-C0F9498EJR"]:
             errors.append(f"{relative}: expected exactly one existing GA4 tag")
-        for required_property in ("og:title", "og:description", "og:url", "og:image"):
+        for required_property in ("og:title", "og:description", "og:url", "og:image", "og:site_name", "og:image:alt"):
             if f"{required_property}" not in parser.open_graph:
                 errors.append(f"{relative}: missing Open Graph {required_property}")
+            values = parser.metadata.get(required_property, [])
+            if len(values) != 1 or not values[0]:
+                errors.append(f"{relative}: must have exactly one non-empty {required_property}")
+        for property_name, expected_value in (
+            ("og:url", expected_url),
+            ("og:title", title),
+        ):
+            values = parser.metadata.get(property_name, [])
+            if values != [expected_value]:
+                errors.append(f"{relative}: {property_name} must match the canonical URL/page title")
+        og_images = parser.metadata.get("og:image", [])
+        if len(og_images) != 1 or not og_images[0].startswith(f"{SITE_ORIGIN}/"):
+            errors.append(f"{relative}: Open Graph image must be one absolute production asset URL")
+
+        for property_name in ("twitter:card", "twitter:url", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"):
+            values = parser.metadata.get(property_name, [])
+            if len(values) != 1 or not values[0]:
+                errors.append(f"{relative}: must have exactly one non-empty {property_name}")
+        if parser.metadata.get("twitter:card") != ["summary_large_image"]:
+            errors.append(f"{relative}: twitter:card must be summary_large_image")
+        if parser.metadata.get("twitter:url") != [expected_url]:
+            errors.append(f"{relative}: twitter:url must match the canonical URL")
+        if parser.metadata.get("twitter:title") != parser.metadata.get("og:title"):
+            errors.append(f"{relative}: Twitter and Open Graph titles must match")
+        if parser.metadata.get("twitter:image") != og_images:
+            errors.append(f"{relative}: Twitter and Open Graph images must match")
 
     for page, parser in parsed_pages.items():
         for reference in set(parser.local_references):
@@ -250,6 +296,12 @@ def main() -> int:
         applications = [item for item in product_items if item.get("@type") == "SoftwareApplication"]
         if len(applications) != 6:
             errors.append("products page JSON-LD must describe all six company software products")
+        application_names = [item.get("name") for item in applications]
+        application_urls = [item.get("url") for item in applications]
+        if len(set(application_names)) != len(applications):
+            errors.append("products page SoftwareApplication names must be unique")
+        if len(set(application_urls)) != len(applications):
+            errors.append("products page SoftwareApplication URLs must be unique")
         lists = [item for item in product_items if item.get("@type") == "ItemList"]
         if lists:
             listed_ids = {
@@ -264,6 +316,11 @@ def main() -> int:
             company_id = "https://www.koungasolutions.co.nz/#organization"
             if application.get("creator", {}).get("@id") != company_id or application.get("publisher", {}).get("@id") != company_id:
                 errors.append(f"{application.get('name', 'SoftwareApplication')}: creator and publisher must reference Kounga Solutions")
+            official_url = application.get("url", "")
+            if not official_url.startswith("https://"):
+                errors.append(f"{application.get('name', 'SoftwareApplication')}: official URL must use HTTPS")
+            if official_url not in parsed_pages[products_page].external_links:
+                errors.append(f"{application.get('name', 'SoftwareApplication')}: official URL must have a crawlable page link")
 
     sitemap_path = ROOT / "sitemap.xml"
     try:

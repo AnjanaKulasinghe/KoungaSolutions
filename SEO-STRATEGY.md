@@ -36,15 +36,15 @@ Avoid cannibalisation by keeping each product’s own site as the detailed desti
 
 ## Competitor/reference research
 
-Public search discovery on 25 November 2026 surfaced these businesses for NZ/Auckland testing and QA intent. This sample is qualitative and does not establish ranking positions:
+Public search discovery on 25 November 2026 surfaced these businesses for NZ/Auckland testing and QA intent. The sample is qualitative and does not establish ranking positions, search volumes, keyword difficulty or market share:
 
-- [UTUM](https://www.utum.co.nz/): test-engineering consultancy; explicit automation, API, CI/CD and test-management services, with leadership and qualifications.
-- [Pattern](https://www.pattern.co.nz/services/development/testing-qa/): QA page explains test types, deliverables, tools and FAQs.
+- [UTUM](https://www.utum.co.nz/): test-engineering consultancy; its public page lists automation, REST API testing, CI/CD integration and test management.
+- [Pattern](https://www.pattern.co.nz/services/development/testing-qa/): QA page explains test types and deliverables, including end-to-end testing.
 - [Resync](https://resync.nz/services/): independent NZ QA practice with segmented services and published case outcomes.
 - [TestPilot](https://www.testpilot.nz/): flexible specialist QA/testing support and engagement positioning.
-- [Orchid](https://www.orchid.co.nz/), [Putti](https://www.puttiapps.com/), and [Corvidae](https://corvidae.co.nz/): Auckland software/app agencies with project, product, or service-specific content.
+- [Orchid](https://www.orchid.co.nz/), [Putti](https://www.puttiapps.com/), and [RR Tech](https://www.rrtech.co.nz/app-development): Auckland providers with custom software, web/mobile app and project-positioning detail.
 
-The test-automation page adds direct coverage of Kounga’s currently published service, links founder expertise, and separates facts from credentials. Differentiation still needs company-approved delivery examples, engagement scope and client permission; do not copy competitor claims or statistics.
+The current service pages cover the primary relevant search intents, but the public market sample shows that some competitors publish more concrete deliverables, project evidence and engagement scope. This is a content opportunity only, not a reason to add unverified claims or copy competitor positioning. Detailed recommendations with benefits, impact, complexity and approvals are in [SEO-CONTENT-RECOMMENDATIONS.md](SEO-CONTENT-RECOMMENDATIONS.md).
 
 ## Content authority and next pages
 
@@ -53,6 +53,8 @@ The test-automation page adds direct coverage of Kounga’s currently published 
 3. Gather permissioned case-study information: client consent, challenge, Kounga role, solution, attributable outcome, timeframe and logo/image use.
 5. Add FAQs based on actual customer questions. Use visible HTML answers; do not add FAQ rich-result markup merely for appearance.
 6. Publish technical guides only when an expert can review them and they offer first-hand value, such as API contract testing or choosing regression coverage.
+
+All proposed copy, case studies, FAQs, service pages and product-detail additions remain recommendations. Strict design preservation is the active baseline; implementation needs explicit content/design approval and verified facts.
 
 ## Internal linking and conversion
 

@@ -1,7 +1,7 @@
-# SEO Audit: Phase 3
+# SEO Audit
 
 **Updated:** 25 November 2026
-**Scope:** Repository and publicly available company, founder and product pages. Search Console, analytics accounts, server logs, local browser rendering, Lighthouse and real-user field data were unavailable.
+**Scope:** Repository-side technical, metadata, structured-data and search-intent review under strict visual-preservation constraints. Search Console, analytics accounts, server logs, local browser rendering, Lighthouse and real-user field data were unavailable.
 
 ## Business and search context
 
@@ -62,3 +62,21 @@ Remaining product-specific commercial and support details:
 6. After an approved release, validate `www`/apex redirects, HTTPS, all landing pages, `robots.txt`, sitemap, analytics, form behavior, Rich Results/schema, PageSpeed and indexing.
 
 See [SEO-REPORT.md](SEO-REPORT.md) for status categories and [POST-LAUNCH-SEO.md](POST-LAUNCH-SEO.md) for exact verification commands and URLs.
+
+## Design-preserving audit update — 25 November 2026
+
+The current implementation already has the core on-page and technical SEO controls in place: unique page titles and descriptions, `en-NZ`, index/follow directives, canonicals, social metadata, JSON-LD connected to the confirmed company and products, four canonical sitemap routes, and a crawl-allowing robots policy. The expanded local regression check verifies these controls and product link/entity consistency. No metadata or structured-data defect with a clear, evidence-based benefit was found that would justify changing current page output.
+
+| Finding | Classification | Action |
+|---|---|---|
+| Page metadata, canonicals, language, social cards, JSON-LD, sitemap and robots policy | Already optimised | Keep the current production identity and four-route architecture. Add regression coverage; no metadata values or structured data needed changing. |
+| Social metadata and indexability could silently drift | Safe to implement without visual changes | Extend `scripts/check_seo.py` to fail on missing/mismatched social fields, accidental `noindex`, duplicate IDs, or product entities without crawlable official links. |
+| Richer service proof, buyer questions, or product/commercial details | Requires visible content changes and verified business information | Record as recommendations only in [SEO-CONTENT-RECOMMENDATIONS.md](SEO-CONTENT-RECOMMENDATIONS.md). |
+| Search performance, selected canonicals, sitemap fetches, CWV and conversion attribution | Requires external account access or production telemetry | No conclusions about ranking/indexing or field performance; follow [POST-LAUNCH-SEO.md](POST-LAUNCH-SEO.md) after an authorised release. |
+| Screenshot comparison and real-device/browser behavior | Requires browser tooling | Not available in this environment. The only HTML edit is query-parameter entity escaping for the homepage font URL; no visible content or presentation changes were made. Formal visual regression remains unverified. |
+
+### Search intent and market evidence
+
+The keyword map is qualitative and reflects the current offers and a current public-search sample, not measured volumes, difficulty, rankings, or share of voice. The visible market sample includes Auckland software/app firms describing custom software, web, mobile and AI capabilities, including [Putti](https://www.puttiapps.com/), [Orchid](https://www.orchid.co.nz/) and [RR Tech](https://www.rrtech.co.nz/app-development). QA/testing providers such as [UTUM](https://www.utum.co.nz/) and [Pattern](https://www.pattern.co.nz/services/development/testing-qa/) publish specific testing methods and deliverables. These are examples of public positioning, not a definitive competitor or ranking set.
+
+The strategic opportunity is to substantiate Kounga's existing Auckland/NZ software and QA intent with owner-approved scope, delivery detail and evidence. Do not add copy, pages, FAQs, claims, locations or customer references until approved and fact-checked. Keyword and content recommendations are recorded separately; no volume estimates or ranking targets are inferred.

@@ -1,6 +1,6 @@
 # Production SEO Verification Checklist
 
-Use after an authorized release. Current production is not assumed to contain the repository changes. Do not deploy or alter external accounts as part of this checklist without the appropriate authorization.
+Use after an authorized release. Production was checked read-only on 25 November 2026 and matched the pending repository on page titles, descriptions, canonicals and H1s across the four public routes. No deployment or external account changes were made. Re-run checks after the next release; do not deploy or alter external accounts without the appropriate authorization.
 
 ## 1. Local site and code checks
 
@@ -23,6 +23,8 @@ done
 
 Expected result: six `200` responses. Open `http://127.0.0.1:8000/` in a browser and inspect all four routes at desktop and mobile widths. Check navigation, internal links, image loading, keyboard/focus behavior, reduced-motion behavior, form validation and browser console errors. Do not send a real form message from the local copy unless using an agreed test address and authorized to test the live Web3Forms endpoint.
 
+**Observed local results, 25 November 2026:** SEO regression check passed for 4 pages, 15 images and 4 sitemap routes; JavaScript syntax and `git diff --check` passed. A temporary local server returned 200 for all four routes, robots and sitemap. Chrome DevTools Protocol rendered all four routes at mobile 390 × 844 and desktop 1440 × 900; no page console errors or local resource HTTP errors were found. Mobile navigation opened and closed with Escape. The contact form was not submitted. Screenshots are in `/tmp/kounga-validation/screenshots/`. The homepage's leadership cards and portraits appeared after scrolling in mobile emulation; this does not replace physical iPhone Safari testing.
+
 ## 2. Production HTTP, HTTPS and domain redirects
 
 Check the preferred host and paths:
@@ -42,6 +44,8 @@ curl -sSIL https://koungasolutions.co.nz/
 
 Expected: preferred `www` URLs return 200; apex redirects once to the preferred HTTPS host with no loop. Repeat for `http://koungasolutions.co.nz/` and `http://www.koungasolutions.co.nz/`. For each HTML URL, view source and confirm its single canonical matches the exact URL above.
 
+**Observed production results, 25 November 2026:** all four HTML pages, `robots.txt` and `sitemap.xml` returned 200. HTTP apex, HTTP www and HTTPS apex each redirected once to the HTTPS www homepage; HTTPS www returned directly with 200. Each production page's title, description, canonical and H1 matched the pending repository version.
+
 If a header link is visible but its destination fails, copy the link's actual `href` and request that exact path directly. A `404` means the published artifact or path is wrong; confirm the GitHub Pages deployment completed from the intended `main` commit and includes the route's `index.html` file before changing source links. If the direct route returns `200` but a cached page differs, hard-refresh or use a private browser window and verify the deployment/cache before editing the href. The current source uses root-relative links, which are correct for the canonical custom domain.
 
 Public landing pages:
@@ -56,6 +60,8 @@ Public landing pages:
 - Open `https://www.koungasolutions.co.nz/robots.txt`; expect crawl access and `Sitemap: https://www.koungasolutions.co.nz/sitemap.xml`.
 - Open `https://www.koungasolutions.co.nz/sitemap.xml`; expect valid XML containing exactly the four public canonical routes, each once. No fragments, redirect URLs or blocked URLs should appear.
 - After a URL change, update internal links and sitemap together; configure a permanent redirect if the host supports it.
+
+**Observed production results, 25 November 2026:** robots allowed general crawling and pointed to the sitemap. The production sitemap contained exactly the four canonical pages. Recheck after deployment because this result describes the production version fetched on that date.
 
 ## 4. Structured data and page quality
 
@@ -87,9 +93,11 @@ The existing site ID is `G-C0F9498EJR`. In the intended GA4 property:
 4. Confirm failed validation or a failed endpoint response does not emit `generate_lead`.
 5. Mark the event as a conversion/key event if desired. Confirm consent and privacy requirements with the business before enabling additional tracking.
 
-## 8. Lighthouse commands (optional, from a machine with Node/network access)
+## 8. Lighthouse and performance baseline
 
-The repository environment had no browser or Lighthouse executable and denied local socket binding. From a developer machine with Chrome and npm access, run:
+Lighthouse was not available during final validation: the PageSpeed Insights API returned HTTP 429 with a zero daily quota, and temporary package installation failed with npm registry `E401`. No Performance, Accessibility, Best Practices or SEO Lighthouse scores, LCP, CLS, FCP or TBT lab metrics are claimed. No real-user Core Web Vitals data was available. The production HTML responses supported gzip, `Cache-Control: max-age=600` and ETags; compressed HTML body sizes were 7,089 bytes (home), 3,217 bytes (software development), 3,422 bytes (test automation) and 3,605 bytes (products). These are document-only sizes, not total page transfer sizes.
+
+From a developer machine with Chrome and an npm registry available, run the default mobile and desktop Lighthouse modes for each public route:
 
 ```bash
 npx --yes lighthouse https://www.koungasolutions.co.nz/ --output=html --output-path=./lighthouse-home-mobile.html
@@ -102,9 +110,13 @@ npx --yes lighthouse https://www.koungasolutions.co.nz/products/ --output=html -
 npx --yes lighthouse https://www.koungasolutions.co.nz/products/ --preset=desktop --output=html --output-path=./lighthouse-products-desktop.html
 ```
 
-These commands require an approved release and internet access. Preserve reports with the date and environment; Lighthouse lab data is not field data.
+These commands require internet access but do not modify production or submit forms. Preserve reports with the date and environment. Lighthouse lab results are not field data; inspect CrUX/Search Console separately for real-user Core Web Vitals.
 
-## 9. Business and product confirmation
+## 9. HTML conformance findings
+
+The W3C Nu validator was run against the public URLs. The homepage reports three HTML errors: `autocomplete` on the hidden checkbox honeypot, an empty selected service `<option>` without a label, and an `h4` following an `h2` without an `h3`. The software-development, test-automation and products pages reported no HTML errors. Nu also reports redundant `navigation` and `contentinfo` roles as warnings on each page. These findings were not changed during validation; review them before release.
+
+## 10. Business and product confirmation
 
 Company ownership of KoungaClub, PerkyLoop, Body Progress, TripMate, Kounga Test Results Dashboard and Kounga Engage is confirmed; Kounga Games is a publishing brand under the same legal company. The directory's `SoftwareApplication` entities identify AJ&W Consulting Limited/Kounga Solutions as creator and publisher. Before adding more detail, confirm each product's current availability, pricing/terms, platform listings and support arrangements. Preserve the products' individual public names and official-site links.
 

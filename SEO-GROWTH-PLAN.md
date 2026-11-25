@@ -1,12 +1,15 @@
 # SEO Growth Plan
 
-**Updated:** 25 November 2026. Repository-side Phase 1–3 work is complete for review; publication and external account work remain separate.
+**Updated:** 25 November 2026. The current four-page SEO baseline and design-preserving static checks are documented in [SEO-REPORT.md](SEO-REPORT.md). Publication, visual regression, live measurement and external-account work remain separate.
 
 ## Before release
 
-- Complete the local commands and production release only through the authorized GitHub Pages process. See [POST-LAUNCH-SEO.md](POST-LAUNCH-SEO.md) for exact commands, URLs and expected results.
+- Run the repository checks. Before release, complete browser and screenshot comparisons against the approved design baseline on the supported viewports; this environment could not perform them.
+- Release only through the authorized GitHub Pages process. See [POST-LAUNCH-SEO.md](POST-LAUNCH-SEO.md) for exact commands, URLs and expected results. No release is authorized by this plan.
 - Confirm product-specific availability, pricing/terms, platform listings and support arrangements before publishing those details. Company ownership and the Kounga Games brand relationship are established.
 - Confirm existing homepage statistics, 24/7 support, consulting scope, and privacy/consent details with the business owner.
+
+Visible-content opportunities are recommendations only and require explicit approval; see [SEO-CONTENT-RECOMMENDATIONS.md](SEO-CONTENT-RECOMMENDATIONS.md) for priority, benefit, impact, complexity and evidence requirements.
 
 ## First 30 days after release
 
@@ -14,6 +17,7 @@
 - Verify Google Search Console and Bing Webmaster Tools, submit the sitemap, and inspect each route. Record the first available query/page impressions, clicks, indexing, canonical selection and field CWV baseline.
 - Confirm GA4 `generate_lead` only records successful submissions and configure it as a conversion/key event if desired.
 - Run mobile/desktop PageSpeed or Lighthouse checks and retain actual reports. Prioritize user-facing bottlenecks rather than chasing scores.
+- Establish an initial Search Console and Bing baseline before considering page copy, titles, or page-target changes. Keep measured traffic and query data separate from qualitative SERP samples.
 - Confirm Google Business Profile eligibility and details before changing or creating a profile.
 
 ## Days 31–60
