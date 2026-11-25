@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 
 <head>
     <!-- Google tag (gtag.js) -->
@@ -16,46 +16,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Kounga Solutions | Premium IT Solutions in Auckland, NZ</title>
-    <meta name="title" content="Kounga Solutions | Premium IT Solutions in Auckland, NZ">
+    <title>Software Development &amp; IT Services Auckland | Kounga Solutions</title>
     <meta name="description"
-        content="Auckland's premier IT solutions provider. Expert app development, test automation, web design, cloud infrastructure, and 24/7 tech support. Transform your business with cutting-edge technology.">
-    <meta name="keywords"
-        content="IT solutions Auckland, app development NZ, software development New Zealand, web design Auckland, test automation, QA testing, cloud solutions, tech support Auckland, mobile app development, custom software, IT consulting NZ">
+        content="Kounga Solutions provides software and app development, QA testing, IT consulting, web design, and tech support for businesses in Auckland, New Zealand.">
     <meta name="author" content="Kounga Solutions">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-    <meta name="revisit-after" content="7 days">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#111111">
     <link rel="canonical" href="https://www.koungasolutions.co.nz/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.koungasolutions.co.nz/">
-    <meta property="og:title" content="Kounga Solutions | Premium IT Solutions in Auckland, NZ">
+    <meta property="og:title" content="Software Development &amp; IT Services Auckland | Kounga Solutions">
     <meta property="og:description"
-        content="Auckland's premier IT solutions provider. Expert app development, test automation, web design, cloud infrastructure, and 24/7 tech support.">
+        content="Software and app development, QA testing, IT consulting, web design, and tech support for businesses in Auckland, New Zealand.">
     <meta property="og:image" content="https://www.koungasolutions.co.nz/assets/images/KoungaLogo.png">
+    <meta property="og:image:width" content="1602">
+    <meta property="og:image:height" content="835">
+    <meta property="og:image:alt" content="Kounga Solutions logo">
     <meta property="og:site_name" content="Kounga Solutions">
     <meta property="og:locale" content="en_NZ">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.koungasolutions.co.nz/">
-    <meta name="twitter:title" content="Kounga Solutions | Premium IT Solutions in Auckland, NZ">
+    <meta name="twitter:title" content="Software Development &amp; IT Services Auckland | Kounga Solutions">
     <meta name="twitter:description"
-        content="Auckland's premier IT solutions provider. Expert app development, test automation, web design, and cloud infrastructure.">
+        content="Software and app development, QA testing, IT consulting, web design, and tech support for businesses in Auckland, New Zealand.">
     <meta name="twitter:image" content="https://www.koungasolutions.co.nz/assets/images/KoungaLogo.png">
-    <meta name="twitter:site" content="@KoungaSolutions">
+    <meta name="twitter:image:alt" content="Kounga Solutions logo">
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="assets/images/KoungaLogo.png">
     <link rel="apple-touch-icon" href="assets/images/KoungaLogo.png">
-
-    <!-- Geo Tags -->
-    <meta name="geo.region" content="NZ-AUK">
-    <meta name="geo.placename" content="Auckland">
-    <meta name="geo.position" content="-36.848461;174.763336">
-    <meta name="ICBM" content="-36.848461, 174.763336">
 
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,8 +57,6 @@
     <link rel="dns-prefetch" href="https://unpkg.com">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -82,177 +73,124 @@
     <!-- Web3Forms client script (renders hCaptcha, verified server-side by Web3Forms) -->
     <script src="https://web3forms.com/client/script.js" async defer></script>
 
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured data: connects the organization, founder and homepage. -->
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Kounga Solutions",
-        "url": "https://www.koungasolutions.co.nz",
-        "logo": "https://www.koungasolutions.co.nz/assets/images/KoungaLogo.png",
-        "description": "Auckland's premier IT solutions provider specializing in app development, test automation, web design, and cloud infrastructure.",
-        "email": "info@koungasolutions.co.nz",
-        "telephone": "+64221873021",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Hobsonville",
-            "addressLocality": "Auckland",
-            "addressCountry": "NZ"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "-36.848461",
-            "longitude": "174.763336"
-        },
-        "sameAs": [
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.koungasolutions.co.nz/#organization",
+          "name": "Kounga Solutions",
+          "legalName": "AJ&W Consulting Limited",
+          "url": "https://www.koungasolutions.co.nz/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.koungasolutions.co.nz/assets/images/KoungaLogo.png",
+            "width": 1602,
+            "height": 835
+          },
+          "description": "AJ&W Consulting Limited, trading as Kounga Solutions, is an Auckland-based New Zealand technology company providing software and app development, QA testing, IT consulting, web design, and technology support.",
+          "foundingDate": "2017",
+          "brand": { "@id": "https://www.koungasolutions.co.nz/#kounga-games" },
+          "founder": {
+            "@type": "Person",
+            "@id": "https://www.koungasolutions.co.nz/#anjana-kulasinghe",
+            "name": "Anjana Kulasinghe"
+          },
+          "areaServed": [
+            { "@type": "City", "name": "Auckland" },
+            { "@type": "Country", "name": "New Zealand" }
+          ],
+          "sameAs": [
             "https://www.facebook.com/KoungaSolutions/",
             "https://twitter.com/KoungaSolutions",
             "https://www.linkedin.com/company/koungasolutions/"
-        ],
-        "foundingDate": "2017",
-        "founder": {
-            "@type": "Person",
-            "name": "Anjana Kulasinghe"
+          ]
         },
-        "numberOfEmployees": {
-            "@type": "QuantitativeValue",
-            "value": "10"
+        {
+          "@type": "Brand",
+          "@id": "https://www.koungasolutions.co.nz/#kounga-games",
+          "name": "Kounga Games",
+          "description": "Publishing brand operating under AJ&W Consulting Limited, trading as Kounga Solutions."
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.koungasolutions.co.nz/#anjana-kulasinghe",
+          "name": "Anjana Kulasinghe",
+          "gender": "Male",
+          "jobTitle": "Founder and Director",
+          "url": "https://anjanakulasinghe.com/",
+          "sameAs": ["https://anjanakulasinghe.com/"],
+          "worksFor": { "@id": "https://www.koungasolutions.co.nz/#organization" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.koungasolutions.co.nz/#website",
+          "url": "https://www.koungasolutions.co.nz/",
+          "name": "Kounga Solutions",
+          "inLanguage": "en-NZ",
+          "publisher": { "@id": "https://www.koungasolutions.co.nz/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.koungasolutions.co.nz/#webpage",
+          "url": "https://www.koungasolutions.co.nz/",
+          "name": "Software Development & IT Services Auckland | Kounga Solutions",
+          "description": "Kounga Solutions provides software and app development, QA testing, IT consulting, web design, and tech support for businesses in Auckland, New Zealand.",
+          "inLanguage": "en-NZ",
+          "isPartOf": { "@id": "https://www.koungasolutions.co.nz/#website" },
+          "about": { "@id": "https://www.koungasolutions.co.nz/#organization" }
         }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Kounga Solutions",
-        "image": "https://www.koungasolutions.co.nz/assets/images/KoungaLogo.png",
-        "@id": "https://www.koungasolutions.co.nz",
-        "url": "https://www.koungasolutions.co.nz",
-        "telephone": "+64221873021",
-        "priceRange": "$$",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Hobsonville",
-            "addressLocality": "Auckland",
-            "addressRegion": "Auckland",
-            "postalCode": "0618",
-            "addressCountry": "NZ"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": -36.848461,
-            "longitude": 174.763336
-        },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday",
-                "Sunday"
-            ],
-            "opens": "00:00",
-            "closes": "23:59"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "reviewCount": "5"
-        }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Kounga Solutions",
-        "image": "https://www.koungasolutions.co.nz/assets/images/KoungaLogo.png",
-        "url": "https://www.koungasolutions.co.nz",
-        "telephone": "+64221873021",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Hobsonville",
-            "addressLocality": "Auckland",
-            "addressCountry": "NZ"
-        },
-        "priceRange": "$$",
-        "serviceType": [
-            "App Development",
-            "Web Development",
-            "Test Automation",
-            "IT Consulting",
-            "Tech Support",
-            "Graphic Design",
-            "Cloud Infrastructure",
-            "Software Engineering"
-        ],
-        "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": "-36.848461",
-                "longitude": "174.763336"
-            },
-            "geoRadius": "50000"
-        }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Kounga Solutions",
-        "url": "https://www.koungasolutions.co.nz",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.koungasolutions.co.nz/?s={search_term_string}",
-            "query-input": "required name=search_term_string"
-        }
+      ]
     }
     </script>
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
+    <div class="custom-cursor" aria-hidden="true"></div>
 
     <!-- Animated Background -->
-    <div class="bg-animated"></div>
+    <div class="bg-animated" aria-hidden="true"></div>
 
     <!-- Particle Canvas -->
-    <canvas id="particle-canvas"></canvas>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
     <!-- Liquid Blobs -->
-    <div class="liquid-blob liquid-blob-1"></div>
-    <div class="liquid-blob liquid-blob-2"></div>
+    <div class="liquid-blob liquid-blob-1" aria-hidden="true"></div>
+    <div class="liquid-blob liquid-blob-2" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav role="navigation" aria-label="Main navigation">
         <a href="#home" class="logo" aria-label="Kounga Solutions Home">
-            <img src="assets/images/KoungaLogo.png" alt="Kounga Solutions">
+            <picture>
+                <source srcset="assets/images/KoungaLogo.webp" type="image/webp">
+                <img src="assets/images/KoungaLogo.png" alt="Kounga Solutions">
+            </picture>
         </a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="primary-navigation">
             <li><a href="#services">Services</a></li>
+            <li><a href="/services/software-development/">Software Development</a></li>
+            <li><a href="/services/test-automation/">Test Automation</a></li>
+            <li><a href="/products/">Products</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact-form">Contact</a></li>
         </ul>
-        <div class="mobile-toggle" onclick="toggleMobileMenu()">
+        <button class="mobile-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation" onclick="toggleMobileMenu()">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
     </nav>
 
+    <main id="main-content">
     <!-- Hero Section -->
-    <section id="home" class="hero" role="banner" aria-label="Hero section">
+    <section id="home" class="hero" aria-label="Hero section">
         <div class="hero-content">
             <div class="hero-text">
                 <div class="hero-badge">
@@ -353,6 +291,7 @@
                 <h3>App Development</h3>
                 <p>Native and cross-platform mobile apps that delight users. From iOS to Android, we build experiences
                     that stick.</p>
+                <a class="service-link" href="/services/software-development/">Explore software development <span aria-hidden="true">&rarr;</span></a>
             </div>
 
             <div class="service-card" data-aos="fade-up" data-aos-delay="0">
@@ -360,6 +299,7 @@
                 <h3>Kounga Engineering</h3>
                 <p>Agile software development with cutting-edge tech. We build scalable, performant applications that
                     users love.</p>
+                <a class="service-link" href="/services/software-development/">Explore software development <span aria-hidden="true">&rarr;</span></a>
             </div>
 
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
@@ -367,6 +307,7 @@
                 <h3>Kounga Testing</h3>
                 <p>Automated QA and testing pipelines that catch bugs before users do. We ensure quality at every stage
                     of development.</p>
+                <a class="service-link" href="/services/test-automation/">Explore test automation services <span aria-hidden="true">&rarr;</span></a>
             </div>
 
             <div class="service-card" data-aos="fade-up" data-aos-delay="0">
@@ -381,20 +322,15 @@
     <!-- About Section -->
     <section id="about" aria-label="About us">
         <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Our Story</span>
-            <h2 class="section-title">Innovating <span class="gradient-text">Since 2017</span></h2>
-            <p class="section-subtitle">We're a team of passionate tech professionals based in Auckland, New Zealand,
-                dedicated to delivering cost-effective, high-quality IT solutions that drive real business value.</p>
+            <span class="section-tag">About Kounga Solutions</span>
+            <h2 class="section-title">Technology Services and <span class="gradient-text">Software Products</span></h2>
+            <p class="section-subtitle">AJ&amp;W Consulting Limited, trading as Kounga Solutions, is an Auckland technology company established in 2017.</p>
         </div>
 
         <div class="about-content" data-aos="fade-up">
-            <p>Kounga Solutions was founded with a simple mission: make advanced technology accessible and affordable
-                for businesses of all sizes. Whether you're a fast-growing SME or an established enterprise, we bring
-                the same level of expertise and commitment to every project.</p>
+            <p>Kounga Solutions provides professional technology services and develops software products. The company works with businesses on custom software, web and mobile applications, software quality, technology consulting, design and support.</p>
 
-            <p>Our team combines deep technical knowledge with real-world business experience, allowing us to deliver
-                solutions that don't just work, they excel. From custom app development and test automation to web
-                design and strategic IT consulting, we're your end-to-end tech partner.</p>
+            <p>Founder and director Anjana Kulasinghe leads the company. The public professional portfolio documents experience in software quality engineering and products across mobile apps, digital loyalty, fitness tracking, travel planning and test reporting. <a href="/products/">Explore Kounga Solutions' software product portfolio</a> or read <a href="https://anjanakulasinghe.com/">the founder's professional profile</a>.</p>
 
             <p>Ready to transform your business with technology? Let's build something amazing together.</p>
         </div>
@@ -405,21 +341,26 @@
         <div class="section-header" data-aos="fade-up">
             <span class="section-tag">Meet The Team</span>
             <h2 class="section-title">Led By <span class="gradient-text">Visionaries</span></h2>
-            <p class="section-subtitle">Our leadership team brings decades of combined experience in software
-                development, systems administration, and client success.</p>
+            <p class="section-subtitle">Meet the people behind Kounga Solutions' software development and technology services.</p>
         </div>
 
         <div class="team-grid">
             <div class="team-card" data-aos="fade-up" data-aos-delay="0">
-                <img src="assets/images/AnjanaKulasinghe.png" alt="Anjana Kulasinghe">
+                <picture>
+                    <source srcset="assets/images/AnjanaKulasinghe.webp" type="image/webp">
+                    <img src="assets/images/AnjanaKulasinghe.png" alt="Anjana Kulasinghe" loading="lazy" decoding="async">
+                </picture>
                 <div class="team-overlay">
                     <h3>Anjana Kulasinghe</h3>
-                    <p class="role">Founder & CEO</p>
+                    <p class="role">Founder &amp; Director</p>
                 </div>
             </div>
 
             <div class="team-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="assets/images/Geni.png" alt="Geni Bahar">
+                <picture>
+                    <source srcset="assets/images/Geni.webp" type="image/webp">
+                    <img src="assets/images/Geni.png" alt="Geni Bahar" loading="lazy" decoding="async">
+                </picture>
                 <div class="team-overlay">
                     <h3>Geni Bahar</h3>
                     <p class="role">Head of Customer Relationships</p>
@@ -440,19 +381,19 @@
         <!-- Stats Bar -->
         <div class="stats-bar" data-aos="fade-up">
             <div class="stat-item">
-                <div class="stat-number" data-count="9">0</div>
+                <div class="stat-number" data-count="9">9+</div>
                 <div class="stat-label">Years</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" data-count="150">0</div>
+                <div class="stat-number" data-count="150">150+</div>
                 <div class="stat-label">Projects</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" data-count="100">0</div>
+                <div class="stat-number" data-count="100">100%</div>
                 <div class="stat-label">Satisfaction</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number" data-count="24">0</div>
+                <div class="stat-number" data-count="24">24/7</div>
                 <div class="stat-label">Support</div>
             </div>
         </div>
@@ -467,7 +408,7 @@
                             of work and in terms of managing the project. We are impressed with the value-to-money ratio
                             we got working with Kounga Solutions."</p>
                         <div class="testimonial-author">
-                            <img src="assets/images/Marin.png" alt="Marin Construction Group" class="author-img">
+                            <img src="assets/images/Marin.png" alt="Marin Construction Group logo" class="author-img" loading="lazy" decoding="async">
                             <div class="author-info">
                                 <h4>Malone Blaikie</h4>
                                 <p>Business Development Manager, Marin Construction Group</p>
@@ -482,7 +423,7 @@
                             processes significantly. The team was attentive, responsive, and truly understood our needs.
                             We've seen a marked improvement in efficiency and cost savings."</p>
                         <div class="testimonial-author">
-                            <img src="assets/images/Zulin.jpeg" alt="Zulin NZ LTD" class="author-img">
+                            <img src="assets/images/Zulin.jpeg" alt="Zulin Formwork &amp; Scaffolding logo" class="author-img" loading="lazy" decoding="async">
                             <div class="author-info">
                                 <h4>Eranda Lakmal</h4>
                                 <p>Logistics Manager, Zulin NZ LTD</p>
@@ -497,7 +438,7 @@
                             digital infrastructure that perfectly complements our visual storytelling. Their technical
                             expertise and understanding of creative workflows made the entire process seamless."</p>
                         <div class="testimonial-author">
-                            <img src="assets/images/Muse.png" alt="Muse Digital" class="author-img">
+                            <img src="assets/images/Muse.png" alt="Muse Digital logo" class="author-img" loading="lazy" decoding="async">
                             <div class="author-info">
                                 <h4>Kaupadhi</h4>
                                 <p>Director, Muse Digital</p>
@@ -512,7 +453,7 @@
                             sell properties others can't. Their digital solutions have become a competitive advantage in
                             the Auckland market. Exceptional work from start to finish."</p>
                         <div class="testimonial-author">
-                            <img src="assets/images/Kevin.jpg" alt="Kevin Ratnayake" class="author-img">
+                            <img src="assets/images/Kevin.jpg" alt="Kevin Ratnayake monogram logo" class="author-img" loading="lazy" decoding="async">
                             <div class="author-info">
                                 <h4>Kevin Ratnayake</h4>
                                 <p>Real Estate Specialist</p>
@@ -527,7 +468,10 @@
                             transformed how we connect with customers across New Zealand. Their ongoing support and
                             technical guidance have been invaluable to our growth."</p>
                         <div class="testimonial-author">
-                            <img src="assets/images/NovaFeet.png" alt="Nova Feet" class="author-img">
+                            <picture>
+                                <source srcset="assets/images/NovaFeet.webp" type="image/webp">
+                                <img src="assets/images/NovaFeet.png" alt="Nova Feet logo" class="author-img" loading="lazy" decoding="async">
+                            </picture>
                             <div class="author-info">
                                 <h4>Rashmika</h4>
                                 <p>Director, Nova Feet</p>
@@ -537,14 +481,14 @@
                 </div>
             </div>
 
-            <div class="carousel-nav">
-                <div class="carousel-arrow" id="testimonial-prev">
+            <div class="carousel-nav" role="group" aria-label="Testimonial controls">
+                <button class="carousel-arrow" id="testimonial-prev" type="button" aria-label="Previous testimonial">
                     <i class="fas fa-chevron-left"></i>
-                </div>
-                <div class="carousel-dots" id="testimonial-dots"></div>
-                <div class="carousel-arrow" id="testimonial-next">
+                </button>
+                <div class="carousel-dots" id="testimonial-dots" role="group" aria-label="Choose a testimonial"></div>
+                <button class="carousel-arrow" id="testimonial-next" type="button" aria-label="Next testimonial">
                     <i class="fas fa-chevron-right"></i>
-                </div>
+                </button>
             </div>
         </div>
     </section>
@@ -573,19 +517,19 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="text" name="name" id="name" placeholder=" " required>
+                            <input type="text" name="name" id="name" placeholder=" " autocomplete="name" required>
                             <label for="name">Full Name *</label>
                         </div>
 
                         <div class="form-group">
-                            <input type="email" name="email" id="email" placeholder=" " required>
+                            <input type="email" name="email" id="email" placeholder=" " autocomplete="email" required>
                             <label for="email">Email Address *</label>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="tel" name="phone" id="phone" placeholder=" ">
+                            <input type="tel" name="phone" id="phone" placeholder=" " autocomplete="tel">
                             <label for="phone">Phone Number</label>
                         </div>
 
@@ -618,17 +562,21 @@
                         <span>Send Message</span>
                     </button>
 
-                    <div class="form-status" id="formStatus"></div>
+                    <div class="form-status" id="formStatus" role="status" aria-live="polite" aria-atomic="true"></div>
                 </form>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer id="footer" role="contentinfo" aria-label="Site footer">
         <div class="footer-content">
             <h3 class="gradient-text">KOUNGA SOLUTIONS</h3>
-            <img src="assets/images/KoungaLogo_Light.png" alt="Kounga Solutions">
+            <picture>
+                <source srcset="assets/images/KoungaLogo_Light.webp" type="image/webp">
+                <img src="assets/images/KoungaLogo_Light.png" alt="Kounga Solutions" loading="lazy" decoding="async">
+            </picture>
             <p>Your trusted partner for cost-effective, high-quality IT solutions. From app development to test
                 automation, we deliver excellence.</p>
 

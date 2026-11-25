@@ -1,4 +1,5 @@
 // Custom Cursor
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const cursor = document.querySelector('.custom-cursor');
 let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
@@ -15,7 +16,7 @@ function animateCursor() {
     cursor.style.top = cursorY + 'px';
     requestAnimationFrame(animateCursor);
 }
-animateCursor();
+if (!prefersReducedMotion) animateCursor();
 
 // Cursor expand on hover
 document.querySelectorAll('a, button, .service-card, .team-card, .testimonial-card, .tech-card').forEach(el => {
@@ -101,7 +102,7 @@ function animateParticles() {
 
     requestAnimationFrame(animateParticles);
 }
-animateParticles();
+if (!prefersReducedMotion) animateParticles();
 
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
@@ -159,6 +160,10 @@ if (window.innerWidth < 768) {
     cursor.style.display = 'none';
     document.body.style.cursor = 'auto';
 }
+if (prefersReducedMotion) {
+    cursor.style.display = 'none';
+    document.body.style.cursor = 'auto';
+}
 
 // Initialize AOS
 AOS.init({
@@ -166,7 +171,7 @@ AOS.init({
     easing: 'ease-out-cubic',
     once: true,
     offset: 100,
-    disable: 'mobile'
+    disable: prefersReducedMotion ? true : 'mobile'
 });
 
 // Smooth scroll for navigation links
@@ -226,8 +231,13 @@ const observer = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const counters = entry.target.querySelectorAll('.stat-number');
             counters.forEach(counter => {
-                counter.innerText = '0';
-                animateCounter(counter);
+                if (prefersReducedMotion) {
+                    const target = +counter.getAttribute('data-count');
+                    counter.innerText = target + (target === 100 ? '%' : target === 24 ? '/7' : '+');
+                } else {
+                    counter.innerText = '0';
+                    animateCounter(counter);
+                }
             });
             observer.unobserve(entry.target);
         }
@@ -243,19 +253,29 @@ if (statsBar) {
 function toggleMobileMenu() {
     const navLinks = document.querySelector('.nav-links');
     const mobileToggle = document.querySelector('.mobile-toggle');
+    const isOpen = !navLinks.classList.contains('active');
 
-    navLinks.classList.toggle('active');
-    mobileToggle.classList.toggle('active');
+    navLinks.classList.toggle('active', isOpen);
+    mobileToggle.classList.toggle('active', isOpen);
+    mobileToggle.setAttribute('aria-expanded', String(isOpen));
+    mobileToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+}
+
+function closeMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    navLinks.classList.remove('active');
+    mobileToggle.classList.remove('active');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+    mobileToggle.setAttribute('aria-label', 'Open navigation menu');
 }
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         const navLinks = document.querySelector('.nav-links');
-        const mobileToggle = document.querySelector('.mobile-toggle');
         if (navLinks.classList.contains('active')) {
-            navLinks.classList.remove('active');
-            mobileToggle.classList.remove('active');
+            closeMobileMenu();
         }
     });
 });
@@ -263,12 +283,17 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // Close mobile menu when clicking outside
 document.addEventListener('click', (e) => {
     const navLinks = document.querySelector('.nav-links');
-    const mobileToggle = document.querySelector('.mobile-toggle');
     const nav = document.querySelector('nav');
 
     if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        mobileToggle.classList.remove('active');
+        closeMobileMenu();
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.querySelector('.nav-links').classList.contains('active')) {
+        closeMobileMenu();
+        document.querySelector('.mobile-toggle').focus();
     }
 });
 
@@ -279,6 +304,7 @@ const prevBtn = document.getElementById('testimonial-prev');
 const nextBtn = document.getElementById('testimonial-next');
 const dotsContainer = document.getElementById('testimonial-dots');
 
+if (testimonialsSlider && prevBtn && nextBtn && dotsContainer && testimonialCards.length > 0) {
 let isMobile = window.innerWidth < 768;
 let slidesToShow = isMobile ? 1 : 2;
 const totalSlides = testimonialCards.length;
@@ -298,8 +324,11 @@ const maxSlide = totalSlides; // Now we can go up to totalSlides because of clon
 // Create dots based on original number of slides
 const numDots = totalSlides;
 for (let i = 0; i < numDots; i++) {
-    const dot = document.createElement('div');
+    const dot = document.createElement('button');
+    dot.type = 'button';
     dot.classList.add('carousel-dot');
+    dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
+    dot.setAttribute('aria-pressed', String(i === 0));
     if (i === 0) dot.classList.add('active');
     dot.addEventListener('click', () => goToSlide(i));
     dotsContainer.appendChild(dot);
@@ -344,6 +373,7 @@ function updateSlider(smooth = true) {
     const dotIndex = currentSlide % totalSlides;
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === dotIndex);
+        dot.setAttribute('aria-pressed', String(index === dotIndex));
     });
 }
 
@@ -437,6 +467,7 @@ testimonialsSlider.addEventListener('touchend', (e) => {
         }
     }
 }, { passive: true });
+}
 
 // Contact Form Handler
 const contactForm = document.getElementById('contactForm');
@@ -564,6 +595,12 @@ if (contactForm) {
             const data = await response.json();
 
             if (response.ok && data.success) {
+                if (typeof window.gtag === 'function') {
+                    window.gtag('event', 'generate_lead', {
+                        method: 'contact_form',
+                        service: contactForm.querySelector('#service').value
+                    });
+                }
                 showFormStatus('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
                 contactForm.reset();
                 formLoadTime = Date.now();

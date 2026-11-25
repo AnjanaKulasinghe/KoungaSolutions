@@ -1,130 +1,39 @@
-#  SEO Setup Checklist
+# SEO Checklist for New Public Pages
 
-Quick reference for post-launch SEO tasks.
+Use this when adding a service, product, case study, guide, or other public page. Keep claims factual and owner-approved.
 
----
+## Before writing
 
-##  DO THESE FIRST (This Week)
+- [ ] Identify one audience, one primary search intent, and one primary topic for the URL.
+- [ ] Check existing pages and GSC queries to avoid cannibalising an existing page.
+- [ ] Confirm service scope, locations, process, technologies, prices, credentials, outcome data, and client permissions with an owner.
+- [ ] Keep legal entity, trading name, founder/director role, business age and product relationships consistent with owner-confirmed facts.
+- [ ] For products without an owner-confirmed company relationship, confirm the legal owner before ownership claims or SoftwareApplication markup. For KoungaClub, PerkyLoop, Body Progress, TripMate and Kounga Test Results Dashboard, AJ&W Consulting Limited is confirmed as the company behind the product; verify product-specific commercial/support details separately.
+- [ ] Add useful original information; do not create thin duplicate or doorway pages.
 
-### 1. Google Search Console
-- [ ] Create account: https://search.google.com/search-console
-- [ ] Add property: `https://www.koungasolutions.co.nz`
-- [ ] Verify ownership (HTML file or meta tag)
-- [ ] Submit sitemap: `sitemap.xml`
-- [ ] Check indexing status (after 24 hours)
+## Page content and accessibility
 
-### 2. Google Analytics 4
-- [ ] Create account: https://analytics.google.com
-- [ ] Set up property for your domain
-- [ ] Get Measurement ID (G-XXXXXXXXXX)
-- [ ] Add tracking code to `index.html`
-- [ ] Test in Realtime view
+- [ ] Use a stable, readable URL and add a descriptive link from an existing page.
+- [ ] Write a unique title, description, one clear H1, and logical section headings.
+- [ ] Explain the offer and intended customer early; include a relevant call to action.
+- [ ] Link related pages with meaningful anchor text; use real `<a href>` links.
+- [ ] Give informative images descriptive alt text; use empty alt only for decorative images.
+- [ ] Check keyboard operation, focus visibility, mobile layout, contrast, form labels, and reduced-motion preferences.
+- [ ] Keep important text and links in initial HTML; do not make search visibility depend on animation or interaction.
 
-### 3. Bing Webmaster Tools
-- [ ] Sign up: https://www.bing.com/webmasters
-- [ ] Import from Google Search Console (easiest)
-- [ ] Or verify manually and submit sitemap
+## Technical metadata and media
 
----
+- [ ] Include exactly one canonical URL pointing at the preferred HTTPS `www` URL.
+- [ ] Set Open Graph and X/Twitter metadata when the page is shareable; use an accurate image and alt text.
+- [ ] Add JSON-LD only for a relevant page type and facts visible on the page; connect entity IDs and avoid unsupported ratings, addresses, hours, and prices.
+- [ ] Use responsive/compressed WebP/AVIF with a supported fallback; do not lazy-load an above-the-fold/LCP image.
+- [ ] Add the canonical URL to `sitemap.xml`, with a real `lastmod` date for a meaningful content change. Never add fragments or redirect/noindex URLs.
+- [ ] Keep `robots.txt` crawl access correct; remember it is not security or authentication.
 
-##  DO THESE NEXT (Week 2)
+## Release and regression
 
-### 4. Google Business Profile
-- [ ] Create profile: https://business.google.com
-- [ ] Add business details (Hobsonville, Auckland)
-- [ ] Upload photos (logo, team, office)
-- [ ] Request verification postcard
-- [ ] Complete profile when verified
-
-### 5. Social Media
-- [ ] Verify/create Facebook page
-- [ ] Verify/create LinkedIn company page
-- [ ] Verify/create Twitter/X account
-- [ ] Link all profiles to website
-
----
-
-##  ONGOING TASKS
-
-### Analytics & Monitoring
-- [ ] Check Search Console weekly
-- [ ] Review Analytics monthly
-- [ ] Monitor keyword rankings
-- [ ] Track competitor rankings
-
-### Content & Link Building
-- [ ] Ask happy clients for reviews
-- [ ] Get listed in NZ business directories
-- [ ] Write blog posts (if adding blog)
-- [ ] Share content on social media
-
-### Technical
-- [ ] Test site speed monthly
-- [ ] Check for broken links
-- [ ] Update content quarterly
-- [ ] Keep sitemap updated
-
----
-
-##  Files to Add/Edit
-
-### Google Search Console Verification
-```bash
-# Save verification file from Google, then:
-git add google[verification-file].html
-git commit -m "Add Google Search Console verification"
-git push origin main
-```
-
-### Google Analytics Code
-Add to `index.html` after `<head>` tag:
-```html
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
-```
-
-Then:
-```bash
-git add index.html
-git commit -m "Add Google Analytics 4"
-git push origin main
-```
-
----
-
-##  Success Metrics
-
-Track these monthly:
-
-- [ ] Organic traffic (from Analytics)
-- [ ] Search impressions (from Search Console)
-- [ ] Average position for key terms
-- [ ] Number of indexed pages
-- [ ] Google Business Profile views
-- [ ] Click-through rate (CTR)
-- [ ] Conversion rate (contact form)
-
----
-
-##  Quick Links
-
-| Tool | URL | Priority |
-|------|-----|----------|
-| Google Search Console | https://search.google.com/search-console |  HIGH |
-| Google Analytics | https://analytics.google.com |  HIGH |
-| Google Business | https://business.google.com |  HIGH |
-| Bing Webmaster | https://www.bing.com/webmasters |  MEDIUM |
-| PageSpeed Insights | https://pagespeed.web.dev |  LOW |
-| Microsoft Clarity | https://clarity.microsoft.com |  LOW |
-
----
-
-**See [POST-LAUNCH-SEO.md](POST-LAUNCH-SEO.md) for detailed step-by-step instructions.**
-
-**Current Status:** Site is live at www.koungasolutions.co.nz 
+- [ ] Run `python scripts/check_seo.py` and the site's applicable build/tests.
+- [ ] Check the deployed URL returns the expected status and canonical URL; inspect mobile and desktop.
+- [ ] Validate structured data with Google Rich Results Test when a Google-supported feature applies.
+- [ ] Verify sitemap/indexing in Search Console and Bing Webmaster Tools; monitor actual query and conversion data.
+- [ ] Do not deploy or change external webmaster/business profiles without the appropriate release/account authorization.

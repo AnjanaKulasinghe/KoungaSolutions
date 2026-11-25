@@ -3,8 +3,5 @@ Allow: /
 Disallow: /.git/
 Disallow: /.idea/
 
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
 # Sitemap location
 Sitemap: https://www.koungasolutions.co.nz/sitemap.xml

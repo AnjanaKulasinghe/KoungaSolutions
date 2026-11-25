@@ -15,18 +15,21 @@ A high-performance, modern static website for Kounga Solutions built with HTML5,
 
 ```
 KoungaSolutions/
- index.html          # Main HTML file
- sitemap.xml         # SEO sitemap
- robots.txt          # Search engine directives
- CNAME               # Custom domain configuration
- .nojekyll           # Bypass Jekyll processing
+ index.html                              # Corporate homepage
+ services/
+    software-development/index.html     # Custom software, web, mobile and AI software
+    test-automation/index.html           # QA and test automation service
+ products/index.html                    # Company software product directory
+ sitemap.xml                            # SEO sitemap
+ robots.txt                             # Search engine directives
+ CNAME                                  # Custom domain configuration
+ .nojekyll                              # Bypass Jekyll processing
+ scripts/check_seo.py                  # Static SEO and link checks
  assets/
-    css/
-       style.css   # Custom styles
-    js/
-       main.js     # JavaScript functionality
-    images/         # Optimized images
- README.md           # This file
+    css/style.css                       # Custom styles
+    js/main.js                          # JavaScript functionality
+    images/                              # Source and WebP image assets
+ README.md                              # This file
 ```
 
 ##  Technologies Used
