@@ -393,6 +393,22 @@ nav.scrolled::before {
         width: calc(100vw - 30px);
         max-width: 340px;
     }
+
+    .nav-links.active {
+        top: 72px;
+        right: 0;
+        left: 0;
+        width: 100%;
+        max-width: none;
+        height: calc(100vh - 72px);
+        height: calc(100dvh - 72px);
+        max-height: none;
+        overflow-y: auto;
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0 0 16px 16px;
+        background: #0a0a0a;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1471,6 +1487,10 @@ section {
     position: relative;
 }
 
+.products-contact .hero-buttons {
+    justify-content: center;
+}
+
 .contact-container {
     max-width: 900px;
     margin: 0 auto;
@@ -2478,6 +2498,12 @@ footer {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+    }
+
+    .nav-links.active {
+        top: 66px;
+        height: calc(100vh - 66px);
+        height: calc(100dvh - 66px);
     }
 
     .logo img {
