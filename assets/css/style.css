@@ -1500,6 +1500,10 @@ section {
     align-items: center;
 }
 
+.products-contact .section-subtitle {
+    margin-bottom: 24px;
+}
+
 .contact-container {
     max-width: 900px;
     margin: 0 auto;
@@ -2381,6 +2385,11 @@ footer {
     .team-card {
         max-width: 350px;
         margin: 0 auto;
+    }
+
+    #team [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
     }
 
     .testimonials-container {
